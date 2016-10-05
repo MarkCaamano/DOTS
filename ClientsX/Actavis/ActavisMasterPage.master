@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ActavisMasterPage.master.cs" Inherits="MasterPage" %>
+<script runat="server">
+
+  protected void Page_Init(object sender, EventArgs e)
+  {
+      labelWelcome.Text = "Hello ";
+      labelUserName.Text = Session["UserName"].ToString();
+      
+      switch (Session["AccessLevel"].ToString())
+      {
+          case "10":
+              panelAdministrator.Visible = false;
+              break;
+          case "20":
+
+              break;
+          case "30":
+              panelAdministrator.Visible = true;
+              break;
+          default:
+              panelAdministrator.Visible = false;
+              break;
+      }
+  }
+  protected void Logout_Click(object sender, EventArgs e)
+  {
+      Session.Abandon();
+      Session.Clear();
+      Response.Redirect("~/index.aspx");
+  }
+</script>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../../style/MainStyles.css" rel="stylesheet" type="text/css" />
+    <link href="style/ActavisMainStyles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!----------------------------------------------------- Header ------------------------------------------------------>
+    <div class="container">
+    <div class="logoBackGround">
+     <asp:Image ID="companyLogo" runat="server" BorderStyle="None" ImageUrl="~/Clients/Actavis/Actavis_logo.png" ></asp:Image>
+        </div>
+    </div>
+
+    <!----------------------------------------------------- Body -------------------------------------------------------->
+    <div class="content">           
+        <form id="navForm" runat="server">
+            <div class="navbar">
+                <asp:Label ID="labelWelcome" CssClass="lbWelcome" runat="server" Text=""></asp:Label><asp:Label ID="labelUserName" CssClass="lbUserName" runat="server"></asp:Label>
+                <asp:Button ID="Logout" runat="server" ValidationGroup="Submit" CssClass="rightFloat btnLogout" Text="Logout" OnClick="Logout_Click" />
+                <asp:Panel ID="panelUser" runat="server">
+                    <div class="UserNavBar">
+                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="lnkHome" NavigateUrl="~/home.aspx">My Courses</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink2" runat="server" CssClass="lnkScore" NavigateUrl="~/history.aspx">My History</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="lnkProfile" NavigateUrl="~/profile.aspx">My Profile</asp:HyperLink>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="panelAdministrator" runat="server">
+                    <div class="UserNavBar">
+                        <asp:HyperLink ID="HyperLink4" runat="server" CssClass="lnkHome">Users</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink5" runat="server" CssClass="lnkScore">User Summary</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink6" runat="server" CssClass="lnkProfile">Course</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink7" runat="server" CssClass="lnkProfile">Course Summary</asp:HyperLink>
+                    </div>
+                </asp:Panel>
+            </div>
+        </form>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div> 
+    <div class="footerspacer"></div>
+    <!----------------------------------------------------- Footer ------------------------------------------------------>
+    <div class="footersm">&copy; <%= DateTime.Now.Year %> Pinsonault is a trademark of DRG. All Rights Reserved. Version 1.0.</div>
+</body>
+</html>

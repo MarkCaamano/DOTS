@@ -1,0 +1,6 @@
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\obj\Debug\DOTS.csprojResolveAssemblyReference.cache
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\bin\DOTS.dll
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\bin\DOTS.pdb
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\obj\Debug\DOTS.dll
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\obj\Debug\DOTS.pdb
+c:\users\mark.caamano\documents\visual studio 2012\Projects\DOTS\DOTS\bin\AjaxControlToolkit.dll

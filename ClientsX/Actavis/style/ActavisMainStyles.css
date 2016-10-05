@@ -1,0 +1,93 @@
+﻿body {
+    font-family: Verdana, sans-serif;
+    font-size: 0.75em;
+}
+.header1 {
+    color: #666666;
+    font-size: 1.125em;
+    font-weight: bold;
+}
+.footersm {
+    font-size: 0.750em;
+    color: #565656;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 60px;
+    width: 100%;
+    background-color: #e4e4e4;
+}
+.warning {
+    font-size: 0.9em;
+    color: #cc0000;
+}
+.errlogin {
+    color: #000000;
+    background-color: #ffe5e5;
+    border: 1px solid #ffb1b1;
+    padding: 0.625em;
+    width:300px;
+}
+.login {
+    font-size: 0.9em;
+    font-weight: bold;    
+    color: #666666;
+}
+.forgotPassword, .help, .register {
+    color: #2d58a7;
+    text-decoration: none;
+}
+.btnLogin, #Clear, #Register, #Submit, #Reset {
+    -webkit-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
+    -moz-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
+    box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
+    background-color: #EEE;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border: 1px solid #bebebe;
+    color: #666;   
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 2px 6px;
+    height: 28px;
+    cursor: pointer;
+}
+.rightFloat
+{
+    float:right;
+    margin-right:5px;
+}
+
+#companyLogo
+{
+    margin:5px 5px 20px 5px;
+}
+.navbar
+{
+background: #FFF;
+color: #2c5697;
+}
+.logoBackGround
+{
+    background: #FFF;
+}
+.content
+{
+    border-top: 1px solid #2c5697;
+}
+
+ .btnLogout {
+    font-weight: bold;    
+    font-size: 0.9em;
+    color: #2c5697;
+    padding: 6px 10px 5px;
+    border: 1px solid #2c5697;
+    text-transform: uppercase;
+    background-color: #FFF;
+}
+.btnLogout:hover
+{
+   color: #FFF;
+   background-color: #2c5697;
+}

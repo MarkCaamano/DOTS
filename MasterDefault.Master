@@ -1,0 +1,127 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterDefault.master.cs" Inherits="DOTS.MasterDefault" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Style/MainStyles.css" rel="stylesheet" type="text/css" />
+    <link href="Style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<script runat="server">
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        labelWelcome.Text = "Welcome: ";
+        labelUserName.Text = Session["UserName"].ToString();
+
+        switch (Session["AccessLevel"].ToString())
+        {
+            case "10":
+                panelAdministrator.Visible = false;
+                break;
+            case "20":
+
+                break;
+            case "30":
+                panelAdministrator.Visible = true;
+                break;
+            default:
+                panelAdministrator.Visible = false;
+                break;
+        }
+    }
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("~/index.aspx");
+    }   
+</script>
+
+<body class="watermark">
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <!----------------------------------------------------- Header ------------------------------------------------------>
+        <div class="strip">
+            <div class="container">
+                <div class="rightFloat" style="margin-right: 20px; font-weight: 600;">
+                    <asp:UpdatePanel ID="UPName" runat="server">
+                        <ContentTemplate>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                            <asp:Label ID="labelWelcome" CssClass="lbWelcome" runat="server" Text=""></asp:Label><asp:Label ID="labelUserName" CssClass="lbUserName" runat="server"></asp:Label>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="logoBackGround">
+                    <asp:Image ID="companyLogo" runat="server" ImageUrl="~/images/logoCorner.png" CssClass="logo leftFloat"></asp:Image>
+                    <div class="headerText">
+                        DRG eTraining Academy                        
+                    <asp:LinkButton ID="Logout" runat="server" ValidationGroup="Submit" CssClass="btnLogout" Text="Logout&nbsp;" OnClick="Logout_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!----------------------------------------------------- Body -------------------------------------------------------->
+        <div class="clear"></div>
+        <asp:ContentPlaceHolder ID="Content_Menu" runat="server" />
+        <div class="navbar">
+            <%--            <asp:Menu ID="MainMenu" runat="server" Orientation="Horizontal" MaximumDynamicDisplayLevels="1" RenderingMode="Table" SkipLinkText="" Height="100%">
+                <Items>
+                    <asp:MenuItem Text="My Courses" NavigateUrl="home.aspx" />
+                    <asp:MenuItem Text="My History" NavigateUrl="history.aspx" />
+                    <asp:MenuItem Text="My Profile" NavigateUrl="history.aspx" />
+
+                    <asp:MenuItem Text="User Profiles" />
+                    <asp:MenuItem Text="User Summary" />
+                    <asp:MenuItem Text="Course Profiles" />
+                    <asp:MenuItem Text="Course Summary" />
+                </Items>
+
+                <StaticItemTemplate>
+                    <div class="MainMenuBar">
+                        <%# Eval("Text") %>
+                    </div>
+                </StaticItemTemplate>
+
+            </asp:Menu>--%>
+
+            <%--            <asp:Panel ID="panelUser" runat="server">  --%>
+            <%--                <div class="MainMenuBar">  --%>
+            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="lnkHome" NavigateUrl="~/home.aspx">My Learning</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" CssClass="lnkScore" NavigateUrl="~/history.aspx">My History</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink3" runat="server" CssClass="lnkProfile" NavigateUrl="~/profile.aspx">My Profile</asp:HyperLink>
+
+            <%--                </div>  --%>
+            <%--            </asp:Panel>  --%>
+            <asp:Panel ID="panelAdministrator" runat="server">
+                <%--                <div class="MainMenuBar">  --%>
+                <asp:HyperLink ID="HyperLink4" runat="server" CssClass="lnkUProfile" NavigateUrl="~/learnerProfiles.aspx">People</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink5" runat="server" CssClass="lnkUSummary">Groups</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink6" runat="server" CssClass="lnkUSummary">Reports</asp:HyperLink>
+     <%--           <asp:HyperLink ID="HyperLink6" runat="server" CssClass="lnkCProfile">Course Profiles</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink7" runat="server" CssClass="lnkCSummary">Course Summary</asp:HyperLink>--%>
+                <%--                </div>  --%>
+            </asp:Panel>
+        </div>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="spacer"></div>
+        <!----------------------------------------------------- Footer ------------------------------------------------------>
+        <div class="footer">&copy; <%= DateTime.Now.Year %> Decision Resources Group (DRG) is a trademark of DRG. All rightes reserved. Version 1.0</div>
+
+    </form>
+</body>
+<script type="text/javascript">
+
+    $("#" + $("#tabId").text()).addClass("navSelected");
+
+</script>
+</html>
