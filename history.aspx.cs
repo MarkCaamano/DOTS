@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Drawing;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Security;
@@ -41,7 +43,6 @@ namespace DOTS
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
                 SqlDataAdapter adapt = Helpers.connectionHelper("POTS_CompletedCourses");
@@ -51,11 +52,11 @@ namespace DOTS
                 DataTable ct = new DataTable();
                 adapt.Fill(ct);
 
+
                 //DropDownList1.DataSource = ct;
                 //DropDownList1.DataValueField = "Course";
                 //DropDownList1.DataTextField = "Course";
                 //DropDownList1.DataBind();
-
 
                 try
                 {
@@ -66,9 +67,7 @@ namespace DOTS
 
                         foreach (DataRow r in ct.Rows)
                         {
-                           // string sID = r["CourseID"].ToString();
-                            
-                           //Console.Write(sID);
+                            string sID = r["CourseID"].ToString();
 
                             TableRow row = new TableRow();
                             TableCell cell1 = new TableCell();
@@ -81,7 +80,6 @@ namespace DOTS
                             cell1.Text = r["CourseID"].ToString();
 
                             cell2.Text = r["Course"].ToString();
-
 
                             cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
 
@@ -102,9 +100,8 @@ namespace DOTS
                             {
                                 row.CssClass = "courseTableRowOdd";
                             }
-
                             tblCourses.Rows.Add(row);
-                        }
+                        }       
                     }
                     else
                     {

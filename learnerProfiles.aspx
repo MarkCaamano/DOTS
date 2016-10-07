@@ -72,13 +72,15 @@
     </div>
 
     <ajaxPop:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pNewUser" TargetControlID="btnNew" BackgroundCssClass="modalBackground" />
-
-    <asp:Panel ID="pNewUser" runat="server" CssClass="modalPopup" ValidateRequestMode="Inherit" Style="display: none;">
-        <div class="modalHeader">New User</div>
+<%--Style="display: none;"--%>
+    <asp:Panel ID="pNewUser" runat="server" CssClass="modalPopup" ValidateRequestMode="Inherit" >
+        <div class="modalHeader">New User <div class="rightFloat">Access<asp:DropDownList ID="DropDownList1" runat="server" AppendDataBoundItems="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+             <asp:ListItem Text="<Select Access Level>" Value="0" />
+                                                                        </asp:DropDownList></div></div>
         <asp:Table runat="server" ID="tblPassword" CssClass="tblPassword" CellPadding="5" Width="100%">
             <asp:TableRow>
                 <asp:TableCell Width="60">
-                    <asp:Label ID="lblEmail" runat="server" Text="eMail:" class="profile"></asp:Label>
+                    <asp:Label ID="lblEmail" runat="server" Text="eMail:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="lblEmailText" runat="server" Width="100%" ></asp:TextBox>
@@ -91,7 +93,7 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:Label ID="lblFirstName" runat="server" Text="First Name:" class="profile"></asp:Label>
+                    <asp:Label ID="lblFirstName" runat="server" Text="First Name:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="lblFirstNameText" runat="server" Width="100%" ></asp:TextBox>
@@ -104,7 +106,7 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:Label ID="lblLastName" runat="server" Text="Last Name:" class="profile"></asp:Label>
+                    <asp:Label ID="lblLastName" runat="server" Text="Last Name:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="lblLastNameText" runat="server" Width="100%" ></asp:TextBox>
@@ -117,7 +119,7 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:Label ID="lblCompany" runat="server" Text="Company:" class="profile"></asp:Label>
+                    <asp:Label ID="lblCompany" runat="server" Text="Company:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="lblCompanyText" runat="server" Width="100%" BorderStyle="None" ReadOnly="True"></asp:TextBox>
@@ -134,7 +136,7 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-        <div style="font-size: 0.8em; padding-right: 40px">
+        <div style="font-size: 0.8em; padding-right: 40px; width: 411px;">
         </div>
         <br />
         <asp:Table runat="server" ID="Table2" CssClass="rightFloat" Style="margin-right: 14px; margin-bottom: 10px;">
@@ -142,9 +144,10 @@
                 <asp:TableCell>
                     <asp:Button ID="lnkSubmitUser" runat="server" CssClass="btnSubmitPassword" Text="Add" OnClick="lnkSubmitUser_Click"></asp:Button>
                 </asp:TableCell><asp:TableCell>
-                    <asp:LinkButton ID="lnkCancel" runat="server" class="btnCancelPassword" Text="Cancel" OnClick="CancelUser_Click"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkCancel" runat="server" CssClass="btnCancelPassword" Text="Cancel" OnClick="CancelUser_Click"></asp:LinkButton>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
     </asp:Panel>
+    <asp:Label ID="lblmsg" runat="server"></asp:Label>
 </asp:Content>

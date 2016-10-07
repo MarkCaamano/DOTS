@@ -16,10 +16,9 @@
                 <asp:TableCell Style="border: none;" Width="13%">Ended</asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-
-        <asp:Panel ID="panelNoEnroll" runat="server">
+             <asp:Panel ID="panelNoEnroll" runat="server">
             <div class="noEnrollment">No history could be found</div>
         </asp:Panel>
-    </div>
+</div>
     <asp:Label ID="Label1" runat="server"></asp:Label>
 </asp:Content>

@@ -42,7 +42,7 @@ namespace DOTS
             // string sNameSystem = "SILENT BOB";
             // string sSpacer = "\u0020";
 
-            SqlDataAdapter adapt = DOTS.Helpers.connectionHelper("POTS_Login");
+            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_Login");
 
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", txtBoxEmail.Text);
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);
@@ -71,6 +71,7 @@ namespace DOTS
                     FormsAuthentication.RedirectFromLoginPage(txtBoxEmail.Text, true);
                     Session["UserName"] = Convert.ToString(dt.Rows[0]["UserName"]);
                     Session["ClientName"] = Convert.ToString(dt.Rows[0]["ClientName"]);
+                    Session["ClientId"] = dt.Rows[0]["ClientId"];
                     Session["LearnerId"] = Convert.ToString(dt.Rows[0]["LearnerId"]);
                     Session["AccessLevel"] = Convert.ToString(dt.Rows[0]["AccessLevel"]);
                     Session["MasterPage"] = Convert.ToString(dt.Rows[0]["MasterPage"]);
