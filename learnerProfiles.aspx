@@ -83,7 +83,7 @@
                     <asp:Label ID="lblEmail" runat="server" Text="eMail:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="lblEmailText" runat="server" Width="100%" ></asp:TextBox>
+                    <asp:TextBox ID="txtAddEmail" runat="server" Width="100%" ></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
@@ -96,7 +96,7 @@
                     <asp:Label ID="lblFirstName" runat="server" Text="First Name:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="lblFirstNameText" runat="server" Width="100%" ></asp:TextBox>
+                    <asp:TextBox ID="txtAddFirstName" runat="server" Width="100%" ></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
@@ -109,7 +109,7 @@
                     <asp:Label ID="lblLastName" runat="server" Text="Last Name:" CssClass="profile"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="lblLastNameText" runat="server" Width="100%" ></asp:TextBox>
+                    <asp:TextBox ID="txtAddLastName" runat="server" Width="100%" ></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>

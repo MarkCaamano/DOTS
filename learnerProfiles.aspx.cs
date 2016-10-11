@@ -44,15 +44,15 @@ namespace DOTS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblCompanyText.Text = Session["ClientName"].ToString();        
-                                   
+            lblCompanyText.Text = Session["ClientName"].ToString();
+
             if (!Page.IsPostBack)
             {
-               // drop down for new users //
+                // drop down for new users //
                 DataTable dsDDL = new DataTable();
 
                 SqlDataAdapter sdasDDL = Helpers.connectionHelper("POTS_Access");
-               
+
                 sdasDDL.Fill(dsDDL);
 
                 DropDownList1.DataSource = dsDDL;
@@ -60,7 +60,7 @@ namespace DOTS
                 DropDownList1.DataValueField = "AccessLevelId";
                 DropDownList1.DataBind();
 
-               // populate user based on client //
+                // populate user based on client //
                 SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientLearnerProfiles");
                 adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"].ToString());
                 DataTable dtLearner = new DataTable();
@@ -79,36 +79,59 @@ namespace DOTS
 
         protected void lnkSubmitUser_Click(object sender, EventArgs e)
         {
-
-            SqlDataAdapter AddsqlAdapt = Helpers.connectionHelper("POTS_UpsertUserProfile");
-
-            //// do not pass learner ID?         
-            //AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@LearnerID", null);
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@LearnerEmail", lblEmailText.Text);
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@FirstName", lblFirstNameText.Text);
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@LastName", lblLastNameText.Text);
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@LearnerPassword", "password");
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@ClientId", Session["ClientId"]);
-            AddsqlAdapt.InsertCommand.Parameters.AddWithValue("@AccessLevel", Convert.ToInt32(DropDownList1.SelectedValue));
-
+            string connString;
+            SqlConnection conn = null;
+            SqlCommand sCommand = null;
+            
             try
             {
+                connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
+                conn = new SqlConnection(connString);
+                sCommand = new SqlCommand("POTS_UpsertUserProfile", conn);
+                sCommand.CommandType = CommandType.StoredProcedure;
+
+                // do not pass learner ID? //         
+                sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
+                // stuff Administrator inserted //
+                sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = txtAddEmail.Text;
+                sCommand.Parameters.Add("@FirstName", SqlDbType.VarChar, 255).Value = txtAddFirstName.Text;
+                sCommand.Parameters.Add("@LastName", SqlDbType.VarChar, 255).Value = txtAddLastName.Text;
+                // stuff Administator did not add //                
+                
+                Byte[] hashedBytes = Helpers.ComputeHash("password", new SHA512CryptoServiceProvider());
+               
+                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = System.Text.Encoding.UTF8.GetString(hashedBytes);
+                sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = Convert.ToInt32(DropDownList1.SelectedValue);
+                sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = Session["ClientId"];
+
+                conn.Open();
+                sCommand.ExecuteNonQuery();
+                conn.Close();
+
+                // Yay it was added //
                 lblmsg.Text = "Record Inserted Succesfully into the Database";
                 lblmsg.ForeColor = System.Drawing.Color.CornflowerBlue;
             }
-            catch
+            catch (InvalidCastException eSuckIt)
             {
-                lblmsg.Text = "Record NOT in the Database";
+                // good try. try gooder //
+                lblmsg.Text = "Record NOT Inserted into the Database. Error: " + eSuckIt;
                 lblmsg.ForeColor = System.Drawing.Color.Red;
             }
+            finally
+            {
+                sCommand.Dispose();
+                conn.Dispose();
+            }
+
         }
 
         protected void CancelUser_Click(object sender, EventArgs e)
         {
-            lblEmailText.Text = string.Empty;
-            lblFirstNameText.Text = string.Empty;
-            lblLastNameText.Text = string.Empty;
-          
+            txtAddEmail.Text = string.Empty;
+            txtAddFirstName.Text = string.Empty;
+            txtAddLastName.Text = string.Empty;
+
             mp1.Hide();
         }
 

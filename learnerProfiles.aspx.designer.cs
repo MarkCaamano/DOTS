@@ -94,13 +94,13 @@ namespace DOTS {
         protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// lblEmailText control.
+        /// txtAddEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblEmailText;
+        protected global::System.Web.UI.WebControls.TextBox txtAddEmail;
         
         /// <summary>
         /// lblFirstName control.
@@ -112,13 +112,13 @@ namespace DOTS {
         protected global::System.Web.UI.WebControls.Label lblFirstName;
         
         /// <summary>
-        /// lblFirstNameText control.
+        /// txtAddFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblFirstNameText;
+        protected global::System.Web.UI.WebControls.TextBox txtAddFirstName;
         
         /// <summary>
         /// lblLastName control.
@@ -130,13 +130,13 @@ namespace DOTS {
         protected global::System.Web.UI.WebControls.Label lblLastName;
         
         /// <summary>
-        /// lblLastNameText control.
+        /// txtAddLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblLastNameText;
+        protected global::System.Web.UI.WebControls.TextBox txtAddLastName;
         
         /// <summary>
         /// lblCompany control.

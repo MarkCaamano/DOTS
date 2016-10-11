@@ -39,18 +39,23 @@ namespace DOTS
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             int iActive;
+            
             // string sNameSystem = "SILENT BOB";
             // string sSpacer = "\u0020";
 
             SqlDataAdapter adapt = Helpers.connectionHelper("POTS_Login");
 
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", txtBoxEmail.Text);
-            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);
 
-            byte[] pwd = DOTS.Helpers.ComputeHash(txtBoxPassword.Text, new SHA512CryptoServiceProvider());
+            Byte[] hashedBytes = Helpers.ComputeHash(txtBoxPassword.Text, new SHA512CryptoServiceProvider());
+           // adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", System.Text.Encoding.UTF8.GetString(hashedBytes));
+
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);  
 
             DataTable dt = new DataTable();
             adapt.Fill(dt);
+
+            Label1.Text = System.Text.Encoding.UTF8.GetString(hashedBytes);
 
             if ((dt != null) && (dt.Rows.Count > 0))
             {
