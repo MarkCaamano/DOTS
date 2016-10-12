@@ -46,10 +46,19 @@ namespace DOTS
         {
             lblCompanyText.Text = Session["ClientName"].ToString();
 
-            //if (!Page.IsPostBack)
-            //{
+            if (!Page.IsPostBack)
+            {
                 BindData();
-            //}
+            }
+        }
+        protected void ClearData()
+        {
+            txtAddEmail.Text = string.Empty;
+            txtAddFirstName.Text = string.Empty;
+            txtAddLastName.Text = string.Empty;
+            ddlAccessLevel.SelectedIndex = 0;
+
+            txtPassword.Text = string.Empty;           
         }
 
         protected void BindData()
@@ -83,10 +92,16 @@ namespace DOTS
         }
         protected void lnkSubmitUser_Click(object sender, EventArgs e)
         {
+            //check to see if user is in the table and alert that user profile exists.
             string connString;
             SqlConnection conn = null;
             SqlCommand sCommand = null;
-            
+
+            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientPassWord");
+            adapt.SelectCommand.Parameters.AddWithValue("@ClientId", Session["ClientId"]);
+            DataTable dt = new DataTable();
+            adapt.Fill(dt); 
+
             try
             {
                 connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
@@ -100,11 +115,9 @@ namespace DOTS
                 sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = txtAddEmail.Text;
                 sCommand.Parameters.Add("@FirstName", SqlDbType.VarChar, 255).Value = txtAddFirstName.Text;
                 sCommand.Parameters.Add("@LastName", SqlDbType.VarChar, 255).Value = txtAddLastName.Text;
+                
                 // stuff Administator did not add //                
-
-                //Byte[] hashedBytes = ;System.Text.Encoding.ASCII.GetString(hashedBytes);
-
-                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = Helpers.ComputeHash(txtPassword.Text, txtAddEmail.Text);
+                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = Helpers.ComputeHash(Convert.ToString(dt.Rows[0]["DefaultPassword"]), txtAddEmail.Text);
                 sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = Convert.ToInt32(ddlAccessLevel.SelectedValue);
                 sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = Session["ClientId"];
 
@@ -115,6 +128,7 @@ namespace DOTS
                 // Yay it was added //
                 lblmsg.Text = "Record Inserted Succesfully into the Database";
                 lblmsg.ForeColor = System.Drawing.Color.CornflowerBlue;
+               
             }
             catch (InvalidCastException eSuckIt)
             {
@@ -123,21 +137,21 @@ namespace DOTS
                 lblmsg.ForeColor = System.Drawing.Color.Red;
             }
             finally
-            {
+            {            
                 sCommand.Dispose();
                 conn.Dispose();
-            }
-            mp1.Hide();
+                BindData();  
+                //empty 
+                ClearData();
+                // hide pop-up
+                mp1.Hide();
+            }          
         }
 
         protected void CancelUser_Click(object sender, EventArgs e)
         {
-            txtAddEmail.Text = string.Empty;
-            txtAddFirstName.Text = string.Empty;
-            txtAddLastName.Text = string.Empty;
-            ddlAccessLevel.SelectedIndex = 0;
-            txtPassword.Text = string.Empty;
-
+            ClearData();
+            // hide pop-up
             mp1.Hide();
         }
 
@@ -148,7 +162,6 @@ namespace DOTS
 
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
             gvEmployee.PageIndex = e.NewPageIndex;
             BindData();
         }

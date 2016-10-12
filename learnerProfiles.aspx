@@ -26,7 +26,8 @@
             </asp:TableRow>
         </asp:Table>--%>
         <%--OnSorting="gvEmployee_Sorting"--%>
-               
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
                 <asp:GridView ID="gvEmployee" runat="server" BorderStyle="None" BorderWidth="0px" CellPadding="6" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" Width="100%" CssClass="courseTable" AllowPaging="True" OnPageIndexChanging="gvEmployee_PageIndexChanging" PageSize="5">
                     <Columns>
 
@@ -48,7 +49,7 @@
                                 <asp:Label ID="txtNameid" runat="server" Text='<%#Eval("LastName") %>' />
                             </ItemTemplate>
 
-<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                            <ItemStyle HorizontalAlign="Left"></ItemStyle>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="eMail">
@@ -73,7 +74,11 @@
                     <SelectedRowStyle BackColor="#C4ECFF" />
                     <AlternatingRowStyle CssClass="courseTableRowOdd"></AlternatingRowStyle>
                 </asp:GridView>
-
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="lnkSubmitUser" />
+            </Triggers>
+        </asp:UpdatePanel>
     </div>
 
     <ajaxPop:ModalPopupExtender ID="mp1" runat="server" PopupControlID="pNewUser" TargetControlID="btnNew" BackgroundCssClass="modalBackground" />
@@ -94,7 +99,7 @@
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="txtAddEmail" runat="server" Width="100%"></asp:TextBox>
-                    <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtPassword" runat="server" Visible="False"></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
