@@ -67,13 +67,13 @@ namespace DOTS {
         protected global::System.Web.UI.WebControls.Panel pNewUser;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlAccessLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccessLevel;
         
         /// <summary>
         /// tblPassword control.
@@ -101,6 +101,15 @@ namespace DOTS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddEmail;
+        
+        /// <summary>
+        /// txtPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
         
         /// <summary>
         /// lblFirstName control.

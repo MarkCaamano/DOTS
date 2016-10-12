@@ -8,7 +8,8 @@ using System.Configuration;
 using System.Web.SessionState;
 using System.Net.Mail;
 using System.Security.Cryptography;
-
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Threading;
 
@@ -23,13 +24,14 @@ namespace DOTS
             //
         }
 
-        public static Byte[] ComputeHash(string input, HashAlgorithm algorithm)
+        public static string ComputeHash(string sInput, string sInput2)
         {
-            Byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
-            Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
+            byte[] bPassword = Encoding.UTF8.GetBytes(sInput + sInput2.ToLower());
+            byte[] bHashPassword = HashAlgorithm.Create("SHA512").ComputeHash(bPassword);
 
-            return hashedBytes;
+            return Convert.ToBase64String(bHashPassword);
         }
+        //Convert.ToBase64String
         public static SqlDataAdapter connectionHelper(string sProcedure)
         {
             SqlCommand cmd = null;
@@ -60,5 +62,6 @@ namespace DOTS
                 return 0;
             }
         }
+
     }
 }

@@ -46,7 +46,7 @@ namespace DOTS
             txtPassword.Text = string.Empty;
             txtConfirmPassword.Text = string.Empty;
 
-            lnkSubmitPassword.Enabled = false;
+            //lnkSubmitPassword.Enabled = false;
 
             if (!Page.IsPostBack)
             {

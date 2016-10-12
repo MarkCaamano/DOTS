@@ -46,37 +46,41 @@ namespace DOTS
         {
             lblCompanyText.Text = Session["ClientName"].ToString();
 
-            if (!Page.IsPostBack)
-            {
-                // drop down for new users //
-                DataTable dsDDL = new DataTable();
-
-                SqlDataAdapter sdasDDL = Helpers.connectionHelper("POTS_Access");
-
-                sdasDDL.Fill(dsDDL);
-
-                DropDownList1.DataSource = dsDDL;
-                DropDownList1.DataTextField = "AccessLevelDesc";
-                DropDownList1.DataValueField = "AccessLevelId";
-                DropDownList1.DataBind();
-
-                // populate user based on client //
-                SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientLearnerProfiles");
-                adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"].ToString());
-                DataTable dtLearner = new DataTable();
-                adapt.Fill(dtLearner);
-                try
-                {
-                    gvEmployee.DataSource = dtLearner;
-                    gvEmployee.DataBind();
-                }
-                catch
-                {
-
-                }
-            }
+            //if (!Page.IsPostBack)
+            //{
+                BindData();
+            //}
         }
 
+        protected void BindData()
+        {
+            // drop down for new users //
+            DataTable dsDDL = new DataTable();
+
+            SqlDataAdapter sdasDDL = Helpers.connectionHelper("POTS_Access");
+
+            sdasDDL.Fill(dsDDL);
+
+            ddlAccessLevel.DataSource = dsDDL;
+            ddlAccessLevel.DataTextField = "AccessLevelDesc";
+            ddlAccessLevel.DataValueField = "AccessLevelId";
+            ddlAccessLevel.DataBind();
+
+            // populate user based on client //
+            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientLearnerProfiles");
+            adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"].ToString());
+            DataTable dtLearner = new DataTable();
+            adapt.Fill(dtLearner);
+            try
+            {
+                gvEmployee.DataSource = dtLearner;
+                gvEmployee.DataBind();
+            }
+            catch
+            {
+
+            }
+        }
         protected void lnkSubmitUser_Click(object sender, EventArgs e)
         {
             string connString;
@@ -97,11 +101,11 @@ namespace DOTS
                 sCommand.Parameters.Add("@FirstName", SqlDbType.VarChar, 255).Value = txtAddFirstName.Text;
                 sCommand.Parameters.Add("@LastName", SqlDbType.VarChar, 255).Value = txtAddLastName.Text;
                 // stuff Administator did not add //                
-                
-                Byte[] hashedBytes = Helpers.ComputeHash("password", new SHA512CryptoServiceProvider());
-               
-                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = System.Text.Encoding.UTF8.GetString(hashedBytes);
-                sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = Convert.ToInt32(DropDownList1.SelectedValue);
+
+                //Byte[] hashedBytes = ;System.Text.Encoding.ASCII.GetString(hashedBytes);
+
+                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = Helpers.ComputeHash(txtPassword.Text, txtAddEmail.Text);
+                sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = Convert.ToInt32(ddlAccessLevel.SelectedValue);
                 sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = Session["ClientId"];
 
                 conn.Open();
@@ -114,7 +118,7 @@ namespace DOTS
             }
             catch (InvalidCastException eSuckIt)
             {
-                // good try. try gooder //
+                // good try try gooder //
                 lblmsg.Text = "Record NOT Inserted into the Database. Error: " + eSuckIt;
                 lblmsg.ForeColor = System.Drawing.Color.Red;
             }
@@ -123,7 +127,7 @@ namespace DOTS
                 sCommand.Dispose();
                 conn.Dispose();
             }
-
+            mp1.Hide();
         }
 
         protected void CancelUser_Click(object sender, EventArgs e)
@@ -131,13 +135,23 @@ namespace DOTS
             txtAddEmail.Text = string.Empty;
             txtAddFirstName.Text = string.Empty;
             txtAddLastName.Text = string.Empty;
+            ddlAccessLevel.SelectedIndex = 0;
+            txtPassword.Text = string.Empty;
 
             mp1.Hide();
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlAccessLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine("yes!");
         }
+
+        protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+            gvEmployee.PageIndex = e.NewPageIndex;
+            BindData();
+        }
+
     }
 }

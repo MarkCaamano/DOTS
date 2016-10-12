@@ -20,42 +20,32 @@ namespace DOTS
             if (!Page.IsPostBack) FormsAuthentication.SignOut();
             ErrorBox.Visible = false;
         }
+
         protected void regBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("register.aspx", false);
         }
+
         protected void forgotPasswordBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect("forgotPassword.aspx", false);
         }
-        //protected void txtBoxEmail_TextChanged(object sender, System.EventArgs e)
-        //{
-        //    ErrorBox.Visible = false;
-        //}
-        //protected void txtBoxPassword_TextChanged(object sender, System.EventArgs e)
-        //{
-        //    ErrorBox.Visible = false;
-        //}
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             int iActive;
-            
-            // string sNameSystem = "SILENT BOB";
-            // string sSpacer = "\u0020";
 
             SqlDataAdapter adapt = Helpers.connectionHelper("POTS_Login");
 
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", txtBoxEmail.Text);
 
-            Byte[] hashedBytes = Helpers.ComputeHash(txtBoxPassword.Text, new SHA512CryptoServiceProvider());
-           // adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", System.Text.Encoding.UTF8.GetString(hashedBytes));
-
-            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);  
+            // Byte[] hashedBytes = Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
+            adapt.SelectCommand.Parameters.AddWithValue( "@LearnerPassword", Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text) );
+            Label1.Text = Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
+           // adapt.SelectCommand.Parameters.AddWithValue( "@LearnerPassword", txtBoxPassword.Text );  
 
             DataTable dt = new DataTable();
-            adapt.Fill(dt);
-
-            Label1.Text = System.Text.Encoding.UTF8.GetString(hashedBytes);
+            adapt.Fill(dt);           
 
             if ((dt != null) && (dt.Rows.Count > 0))
             {
@@ -63,9 +53,9 @@ namespace DOTS
             }
             else
             {
-                iActive = -1;
-            }
-
+               iActive = -1;
+            }          
+            
             switch (iActive)
             {
                 case 0:
@@ -90,6 +80,9 @@ namespace DOTS
                     // no default yet
                     break;
             }
+
+            //dt.Dispose();           
+
         }
     }
 }

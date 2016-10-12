@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
         $(document).ready(function () {
             var elems = $('#<%=txtPassword.ClientID%>, #<%=txtConfirmPassword.ClientID%>');
             elems.on('keyup', function () {
@@ -19,19 +19,19 @@
                 }
             });
         });
-    </script>
+    </script>--%>
 
     <asp:Panel ID="Account" runat="server" Style="margin: 2% 0% 0% 2%; width: 500px; margin-left: 3%;">
         <div id="idProfile">
             <div class="idProfileTitle"><%--My Profile--%>&nbsp;</div>
-            <asp:Table runat="server" ID="tblProfile" class="tblProfile">
+            <asp:Table runat="server" ID="tblProfile" CssClass="tblProfile">
                 <asp:TableRow>
                     <asp:TableCell Width="60">
-                        <asp:Label ID="lblEmail" runat="server" Text="eMail:" class="profile"></asp:Label>
+                        <asp:Label ID="lblEmail" runat="server" Text="eMail:" CssClass="profile"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:TextBox ID="lblEmailText" runat="server" ReadOnly="True" Width="100%" BorderStyle="None"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an email" ValidationGroup="Submit" class="warning" ControlToValidate="lblEmailText" Visible="True" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter an email" ValidationGroup="Submit" CssClass="warning" ControlToValidate="lblEmailText" Visible="True" Display="Dynamic"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -41,11 +41,11 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="lblFirstName" runat="server" Text="First Name:" class="profile"></asp:Label>
+                        <asp:Label ID="lblFirstName" runat="server" Text="First Name:" CssClass="profile"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:TextBox ID="lblFirstNameText" runat="server" ReadOnly="True" Width="100%" BorderStyle="None"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter your first name" ValidationGroup="Submit" class="warning" ControlToValidate="lblFirstNameText" Visible="True" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter your first name" ValidationGroup="Submit" CssClass="warning" ControlToValidate="lblFirstNameText" Visible="True" Display="Dynamic"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -55,10 +55,10 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="lblLastName" runat="server" Text="Last Name:" class="profile"></asp:Label>
+                        <asp:Label ID="lblLastName" runat="server" Text="Last Name:" CssClass="profile"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="lblLastNameText" runat="server" ReadOnly="True" Width="100%" BorderStyle="None"></asp:TextBox>                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter your last name" ValidationGroup="Submit" class="warning" ControlToValidate="lblLastNameText" Display="Dynamic">
+                        <asp:TextBox ID="lblLastNameText" runat="server" ReadOnly="True" Width="100%" BorderStyle="None"></asp:TextBox>                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter your last name" ValidationGroup="Submit" CssClass="warning" ControlToValidate="lblLastNameText" Display="Dynamic">
                         </asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
@@ -69,7 +69,7 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="lblCompany" runat="server" Text="Company:" class="profile"></asp:Label>
+                        <asp:Label ID="lblCompany" runat="server" Text="Company:" CssClass="profile"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:TextBox ID="lblCompanyText" runat="server" ReadOnly="True" Width="100%" BorderStyle="None"></asp:TextBox>
@@ -88,11 +88,11 @@
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan="2">
                         <div style="float: right;">
-                            <asp:LinkButton ID="UpdateProfileBtn" runat="server" Text="Update Profile" OnClick="UpdateProfile_Click" class="btnSubmitPasswordLG" ValidationGroup="Submit" Visible="False" />&nbsp;
+                            <asp:LinkButton ID="UpdateProfileBtn" runat="server" Text="Update Profile" OnClick="UpdateProfile_Click" CssClass="btnSubmitPasswordLG" ValidationGroup="Submit" Visible="False" />&nbsp;
                             <asp:LinkButton ID="editProfileBtn" runat="server" Text="Edit Profile" OnClick="EditProfile_Click" CssClass="btnSubmitPasswordLG" />
                             &nbsp;
                     <asp:LinkButton ID="editPasswordBtn" runat="server" Text="Change Password" OnClick="editPasswordBtn_Click" CssClass="btnSubmitPasswordLG" />&nbsp;
-                             <asp:LinkButton ID="cancelBtn" runat="server" Text="Cancel" OnClick="CancelProfile_Click" class="btnSubmitPasswordLG" Visible="False" /> 
+                             <asp:LinkButton ID="cancelBtn" runat="server" Text="Cancel" OnClick="CancelProfile_Click" CssClass="btnSubmitPasswordLG" Visible="False" /> 
                         </div>
                     </asp:TableCell></asp:TableRow></asp:Table></div></asp:Panel><%--<asp:Panel ID="EditAccount" runat="server" Style="margin: 2% 0% 0% 2%; width: 500px; margin-left: 3%;" Visible="False">
         <div id="idEditAccount">
@@ -176,13 +176,13 @@
             <asp:TableRow>
 
                 <asp:TableCell Width="122px">
-                    <asp:Label ID="lblPassword" runat="server" Text="New Password: " class="profile" />
+                    <asp:Label ID="lblPassword" runat="server" Text="New Password: " CssClass="profile" />
                 </asp:TableCell><asp:TableCell>
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="100%" />
                 </asp:TableCell></asp:TableRow><asp:TableRow>
 
                 <asp:TableCell>
-                    <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password: " class="profile" />
+                    <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password: " CssClass="profile" />
                 </asp:TableCell><asp:TableCell>
                     <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" Width="100%" />
                 </asp:TableCell></asp:TableRow></asp:Table><div style="font-size: 0.8em; padding-right: 40px">
@@ -192,9 +192,9 @@
                 <asp:TableCell>
                     <asp:Button ID="lnkSubmitPassword" runat="server" CssClass="btnSubmitPassword" Text="Update" OnClick="lnkSubmitPassword_Click"></asp:Button>
                 </asp:TableCell><asp:TableCell>
-                    <asp:LinkButton ID="lnkCancel" runat="server" Text="Cancel" OnClick="CancelPassword_Click" class="btnCancelPassword"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkCancel" runat="server" Text="Cancel" OnClick="CancelPassword_Click" CssClass="btnCancelPassword"></asp:LinkButton>
                 </asp:TableCell></asp:TableRow></asp:Table><div style="margin-left: 20px;">
-            <asp:CompareValidator ID="RequiredFieldValidatorConfirmPassword" runat="server" ErrorMessage="Confirm password does not match the new password." ValidationGroup="UpdatePassword" class="warning" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" />
+            <asp:CompareValidator ID="RequiredFieldValidatorConfirmPassword" runat="server" ErrorMessage="Confirm password does not match the new password." ValidationGroup="UpdatePassword" CssClass="warning" ControlToValidate="txtConfirmPassword" ControlToCompare="txtPassword" />
         </div>
     </asp:Panel>
 </asp:Content>
