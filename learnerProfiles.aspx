@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="learnerProfiles.aspx.cs" Inherits="DOTS.learnerProfiles" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="learnerProfiles.aspx.cs" Inherits="DOTS.learnerProfiles" EnableEventValidation = "false"%>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxPop" %>
 
@@ -28,7 +28,7 @@
         <%--OnSorting="gvEmployee_Sorting"--%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="gvEmployee" runat="server" BorderStyle="None" BorderWidth="0px" CellPadding="6" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" Width="100%" CssClass="courseTable" AllowPaging="True" OnPageIndexChanging="gvEmployee_PageIndexChanging" PageSize="5">
+                <asp:GridView ID="gvEmployee" runat="server" BorderStyle="None" BorderWidth="0px" CellPadding="6" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" Width="100%" CssClass="courseTable" AllowPaging="True" OnPageIndexChanging="gvEmployee_PageIndexChanging" PageSize="5"  OnRowDataBound = "OnRowDataBound">
                     <Columns>
 
                         <asp:TemplateField HeaderText="ID" Visible="False">
@@ -71,7 +71,7 @@
 
                     <RowStyle HorizontalAlign="Left" Height="40" CssClass="courseTableRow" />
 
-                    <SelectedRowStyle BackColor="#C4ECFF" />
+                    <SelectedRowStyle CssClass="selectedRow" />
                     <AlternatingRowStyle CssClass="courseTableRowOdd"></AlternatingRowStyle>
                 </asp:GridView>
             </ContentTemplate>
@@ -99,6 +99,12 @@
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:TextBox ID="txtAddEmail" runat="server" Width="100%"></asp:TextBox>
+                    <asp:RegularExpressionValidator
+                        ID="RegularExpressionValidator1"
+                        runat="server"
+                        ErrorMessage="Not a vailid email"
+                        ControlToValidate="txtAddEmail" Visible="False">
+                    </asp:RegularExpressionValidator>
                     <asp:TextBox ID="txtPassword" runat="server" Visible="False"></asp:TextBox>
                 </asp:TableCell>
             </asp:TableRow>

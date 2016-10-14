@@ -43,6 +43,14 @@
     line-height: 22px;
 }
 
+.selectedRow
+{
+    background-color:#C4ECFF;
+    font-weight:bold;
+    color:#646469;
+
+}
+
 .footer
 {
     font-size: 1.0em;

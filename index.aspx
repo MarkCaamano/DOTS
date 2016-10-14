@@ -51,9 +51,9 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Label" Visible="False"></asp:Label>
     </form>
     <div id="ErrorBox" class="ErrorBox" runat="server">
         <asp:Label ID="lblErrorMessage" runat="server" Text=""></asp:Label>

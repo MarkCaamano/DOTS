@@ -32,6 +32,58 @@ namespace DOTS
             return Convert.ToBase64String(bHashPassword);
         }
         //Convert.ToBase64String
+        public static void insertLearner(int lId, string lEmail, string lFristName, string lLastName, int lAccessLevel, string lClientName)
+        {
+            string connString;
+            SqlConnection conn = null;
+            SqlCommand sCommand = null;
+
+            //check to see if user is in the table and alert that user profile exists.
+            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientPassWord");
+            adapt.SelectCommand.Parameters.AddWithValue("@ClientName", lClientName);
+            DataTable dt = new DataTable();
+            adapt.Fill(dt);
+
+            string sClientPasss = dt.Rows[0]["DefaultPassword"].ToString();
+
+            try
+            {
+                connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
+                conn = new SqlConnection(connString);
+                sCommand = new SqlCommand("POTS_UpsertUserProfile", conn);
+                sCommand.CommandType = CommandType.StoredProcedure;
+
+                // do not pass learner ID? //        
+                 if (lId == 0)
+                 { 
+                     sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
+                 }
+                 else
+                 {
+                     sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
+                 }
+
+                // stuff Administrator inserted //
+                sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = lEmail;
+                sCommand.Parameters.Add("@FirstName", SqlDbType.VarChar, 255).Value = lFristName;
+                sCommand.Parameters.Add("@LastName", SqlDbType.VarChar, 255).Value = lLastName;
+
+                // stuff Administator did not add //                
+                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = ComputeHash(sClientPasss, lEmail);
+                sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = lAccessLevel;
+                sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = dt.Rows[0]["ClientId"];
+
+                conn.Open();
+                sCommand.ExecuteNonQuery();
+                conn.Close();
+            }
+            finally
+            {
+                sCommand.Dispose();
+                conn.Dispose();
+            }
+        }
+
         public static SqlDataAdapter connectionHelper(string sProcedure)
         {
             SqlCommand cmd = null;

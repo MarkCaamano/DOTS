@@ -12,6 +12,7 @@ using System.Web.SessionState;
 using System.Windows;
 using System.Security.Cryptography;
 using System.Text;
+using System.Drawing;
 
 namespace DOTS
 {
@@ -78,10 +79,15 @@ namespace DOTS
             // populate user based on client //
             SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientLearnerProfiles");
             adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"].ToString());
-            DataTable dtLearner = new DataTable();
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerId", Session["LearnerId"].ToString());
+            adapt.SelectCommand.Parameters.AddWithValue("@AccessLevel", Session["AccessLevel"].ToString());
+
+            DataTable dtLearner = new DataTable();            
             adapt.Fill(dtLearner);
+            //
             try
             {
+                dtLearner.DefaultView.Sort = "AccessLevel ASC, LastName ASC";
                 gvEmployee.DataSource = dtLearner;
                 gvEmployee.DataBind();
             }
@@ -90,45 +96,43 @@ namespace DOTS
 
             }
         }
+
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(gvEmployee, "Select$" + e.Row.RowIndex);
+               // e.Row.ToolTip = "Click to select this row.";
+            }
+        }
+
+        protected void OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gvEmployee.Rows)
+            {
+                if (row.RowIndex == gvEmployee.SelectedIndex)
+                {                    
+                    row.BackColor = ColorTranslator.FromHtml("#A1DCF2");
+                    row.ToolTip = string.Empty;
+                }
+                else
+                {
+                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    row.ToolTip = "Click to select this row.";
+                }
+            }
+        }
+
         protected void lnkSubmitUser_Click(object sender, EventArgs e)
         {
-            //check to see if user is in the table and alert that user profile exists.
-            string connString;
-            SqlConnection conn = null;
-            SqlCommand sCommand = null;
-
-            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientPassWord");
-            adapt.SelectCommand.Parameters.AddWithValue("@ClientId", Session["ClientId"]);
-            DataTable dt = new DataTable();
-            adapt.Fill(dt); 
 
             try
             {
-                connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
-                conn = new SqlConnection(connString);
-                sCommand = new SqlCommand("POTS_UpsertUserProfile", conn);
-                sCommand.CommandType = CommandType.StoredProcedure;
-
-                // do not pass learner ID? //         
-                sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
-                // stuff Administrator inserted //
-                sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = txtAddEmail.Text;
-                sCommand.Parameters.Add("@FirstName", SqlDbType.VarChar, 255).Value = txtAddFirstName.Text;
-                sCommand.Parameters.Add("@LastName", SqlDbType.VarChar, 255).Value = txtAddLastName.Text;
-                
-                // stuff Administator did not add //                
-                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = Helpers.ComputeHash(Convert.ToString(dt.Rows[0]["DefaultPassword"]), txtAddEmail.Text);
-                sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = Convert.ToInt32(ddlAccessLevel.SelectedValue);
-                sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = Session["ClientId"];
-
-                conn.Open();
-                sCommand.ExecuteNonQuery();
-                conn.Close();
+                Helpers.insertLearner(0, txtAddEmail.Text, txtAddFirstName.Text, txtAddLastName.Text, Convert.ToInt32(ddlAccessLevel.SelectedValue), Convert.ToString(Session["ClientName"]));
 
                 // Yay it was added //
                 lblmsg.Text = "Record Inserted Succesfully into the Database";
-                lblmsg.ForeColor = System.Drawing.Color.CornflowerBlue;
-               
+                lblmsg.ForeColor = System.Drawing.Color.CornflowerBlue;               
             }
             catch (InvalidCastException eSuckIt)
             {
@@ -138,14 +142,12 @@ namespace DOTS
             }
             finally
             {            
-                sCommand.Dispose();
-                conn.Dispose();
                 BindData();  
                 //empty 
                 ClearData();
                 // hide pop-up
                 mp1.Hide();
-            }          
+            }  
         }
 
         protected void CancelUser_Click(object sender, EventArgs e)
@@ -163,6 +165,10 @@ namespace DOTS
         protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvEmployee.PageIndex = e.NewPageIndex;
+            //foreach (GridViewRow row in gvEmployee.Rows)
+            //{
+                gvEmployee.SelectedIndex = -1;
+            //}
             BindData();
         }
 
