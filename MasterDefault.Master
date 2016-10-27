@@ -24,15 +24,17 @@
                 panelAdministrator.Visible = false;
                 break;
             case "20":
-
+                panelAdministrator.Visible = true;
                 break;
-            case "30":
+            case "30":  
+            case "66":          
                 panelAdministrator.Visible = true;
                 break;
             default:
                 panelAdministrator.Visible = false;
                 break;
         }
+        
     }
     protected void Logout_Click(object sender, EventArgs e)
     {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="learnerProfiles.aspx.cs" Inherits="DOTS.learnerProfiles" EnableEventValidation = "false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="learnerProfiles.aspx.cs" Inherits="learnerProfiles" EnableEventValidation = "false"%>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxPop" %>
 
@@ -17,18 +17,9 @@
             </div>
         </div>
 
-        <%--        <asp:Table ID="tblLearnerClient" CssClass="courseTable" runat="server" BorderStyle="None">
-            <asp:TableRow CssClass="courseTableRow">
-                <asp:TableCell>Name</asp:TableCell>
-                 <asp:TableCell></asp:TableCell>--%>
-        <%--  <asp:TableCell>eMail</asp:TableCell>
-                <asp:TableCell>Access Level</asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>--%>
-        <%--OnSorting="gvEmployee_Sorting"--%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="gvEmployee" runat="server" BorderStyle="None" BorderWidth="0px" CellPadding="6" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" Width="100%" CssClass="courseTable" AllowPaging="True" OnPageIndexChanging="gvEmployee_PageIndexChanging" PageSize="5"  OnRowDataBound = "OnRowDataBound">
+                <asp:GridView ID="gvEmployee" runat="server" BorderStyle="None" BorderWidth="0px" CellPadding="6" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" Width="100%" CssClass="courseTable" AllowPaging="True" OnPageIndexChanging="gvEmployee_PageIndexChanging"  OnRowDataBound = "OnRowDataBound" PagerStyle-CssClass="gridViewPage">
                     <Columns>
 
                         <asp:TemplateField HeaderText="ID" Visible="False">
@@ -67,7 +58,9 @@
                     </Columns>
                     <HeaderStyle CssClass="courseTableHeader" HorizontalAlign="Left" Font-Bold="False" Height="35"></HeaderStyle>
 
-                    <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NumericFirstLast" PageButtonCount="4" />
+                    <PagerSettings FirstPageText="First" LastPageText="Last" Mode="NextPreviousFirstLast" PageButtonCount="4" />
+
+                    <PagerStyle BackColor="#CCCCCC" Height="10px" />
 
                     <RowStyle HorizontalAlign="Left" Height="40" CssClass="courseTableRow" />
 

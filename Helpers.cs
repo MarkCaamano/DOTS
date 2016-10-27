@@ -54,14 +54,14 @@ namespace DOTS
                 sCommand.CommandType = CommandType.StoredProcedure;
 
                 // do not pass learner ID? //        
-                 if (lId == 0)
-                 { 
+                 //if (lId == 0)
+                 //{ 
                      sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
-                 }
-                 else
-                 {
-                     sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
-                 }
+                 //}
+                 //else
+                 //{
+                 //    sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
+                 //}
 
                 // stuff Administrator inserted //
                 sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = lEmail;
@@ -84,6 +84,32 @@ namespace DOTS
             }
         }
 
+        public static void UpdateLearnerPassword(int lId, string sNewPassword, string sLearnerEmail)
+        {
+            string connString;
+            SqlConnection conn = null;
+            SqlCommand sCommand = null;
+ 
+            try
+            {
+                connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
+                conn = new SqlConnection(connString);
+                sCommand = new SqlCommand("POTS_UpdateUserPassword", conn);
+                sCommand.CommandType = CommandType.StoredProcedure;
+                
+                sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
+                sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = ComputeHash(sNewPassword, sLearnerEmail);
+
+                conn.Open();
+                sCommand.ExecuteNonQuery();
+                conn.Close();
+            }
+            finally
+            {
+                sCommand.Dispose();
+                conn.Dispose();
+            }
+        }
         public static SqlDataAdapter connectionHelper(string sProcedure)
         {
             SqlCommand cmd = null;

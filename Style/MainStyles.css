@@ -51,6 +51,10 @@
 
 }
 
+.gridViewPage
+{
+    background-color:#C4ECFF;
+}
 .footer
 {
     font-size: 1.0em;
@@ -143,6 +147,7 @@
 {
     font-size: 0.9em;
     color: #cc0000;
+    padding-right:3%;
 }
 
 .ErrorBox
@@ -544,6 +549,8 @@
 .tblPassword
 {
     padding: 2% 3% 0% 3%;
+    margin-left: 12px;
+    width:100%;
 }
 
 /* -- end password -- */
@@ -630,12 +637,12 @@
 .modalPopup
 {
     background-color: #FFFFFF;
-    width: 450px;
     /*height: 140px;*/
     border: 1px solid #FFFFFF;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+    width:500px;
 }
 
 .modalHeader

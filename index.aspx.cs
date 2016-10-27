@@ -11,8 +11,6 @@ using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DOTS
-{
     public partial class index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -35,14 +33,14 @@ namespace DOTS
         {
             int iActive;
 
-            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_Login");
+            SqlDataAdapter adapt = DOTS.Helpers.connectionHelper("POTS_Login");
 
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", txtBoxEmail.Text);
+            //adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text));
 
-            // Byte[] hashedBytes = Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
-            adapt.SelectCommand.Parameters.AddWithValue( "@LearnerPassword", Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text) );
-            Label1.Text = Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
-           // adapt.SelectCommand.Parameters.AddWithValue( "@LearnerPassword", txtBoxPassword.Text );  
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);
+
+            //Label1.Text = DOTS.Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
 
             DataTable dt = new DataTable();
             adapt.Fill(dt);           
@@ -85,4 +83,3 @@ namespace DOTS
 
         }
     }
-}

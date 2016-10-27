@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageStart.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="DOTS.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageStart.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -13,8 +13,9 @@
                     <asp:Label ID="lblEmail" runat="server" Text="Email: " CssClass="login"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="txtBoxEmail" runat="server" Width="173"></asp:TextBox>&nbsp;
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorEmail" runat="server" ErrorMessage="Please enter an email" ValidationGroup="Submit" ControlToValidate="txtBoxEmail" CssClass="warning"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="txtBoxEmail" runat="server" Width="173"></asp:TextBox><br />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorEmail" runat="server" ErrorMessage="Please enter an email" ValidationGroup="Submit" ControlToValidate="txtBoxEmail" CssClass="warning" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Not correct format" Display="Dynamic" CssClass="warning" ControlToValidate="txtBoxEmail" ValidationGroup="Submit" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
@@ -22,8 +23,8 @@
                     <asp:Label ID="lblPassword" runat="server" Text="Password: " CssClass="login"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="txtBoxPassword" runat="server" TextMode="Password" Width="173"></asp:TextBox>&nbsp;
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ErrorMessage="Please enter password" ControlToValidate="txtBoxPassword" ValidationGroup="Submit" CssClass="warning"></asp:RequiredFieldValidator>
+                    <asp:TextBox ID="txtBoxPassword" runat="server" TextMode="Password" Width="173"></asp:TextBox><br />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ErrorMessage="Please enter password" ControlToValidate="txtBoxPassword" ValidationGroup="Submit" CssClass="warning" Display="Dynamic"></asp:RequiredFieldValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <%--<asp:TableRow>
@@ -51,9 +52,8 @@
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
-        <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
-        <br />
-        <asp:Label ID="Label2" runat="server" Text="Label" Visible="False"></asp:Label>
+<%--        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>--%>
+
     </form>
     <div id="ErrorBox" class="ErrorBox" runat="server">
         <asp:Label ID="lblErrorMessage" runat="server" Text=""></asp:Label>

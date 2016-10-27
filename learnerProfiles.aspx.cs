@@ -14,8 +14,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Drawing;
 
-namespace DOTS
-{
     public partial class learnerProfiles : System.Web.UI.Page
     {
         protected override void OnPreInit(EventArgs e)
@@ -67,7 +65,7 @@ namespace DOTS
             // drop down for new users //
             DataTable dsDDL = new DataTable();
 
-            SqlDataAdapter sdasDDL = Helpers.connectionHelper("POTS_Access");
+            SqlDataAdapter sdasDDL = DOTS.Helpers.connectionHelper("POTS_Access");
 
             sdasDDL.Fill(dsDDL);
 
@@ -77,7 +75,7 @@ namespace DOTS
             ddlAccessLevel.DataBind();
 
             // populate user based on client //
-            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientLearnerProfiles");
+            SqlDataAdapter adapt = DOTS.Helpers.connectionHelper("POTS_ClientLearnerProfiles");
             adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"].ToString());
             adapt.SelectCommand.Parameters.AddWithValue("@LearnerId", Session["LearnerId"].ToString());
             adapt.SelectCommand.Parameters.AddWithValue("@AccessLevel", Session["AccessLevel"].ToString());
@@ -128,7 +126,7 @@ namespace DOTS
 
             try
             {
-                Helpers.insertLearner(0, txtAddEmail.Text, txtAddFirstName.Text, txtAddLastName.Text, Convert.ToInt32(ddlAccessLevel.SelectedValue), Convert.ToString(Session["ClientName"]));
+                DOTS.Helpers.insertLearner(0, txtAddEmail.Text, txtAddFirstName.Text, txtAddLastName.Text, Convert.ToInt32(ddlAccessLevel.SelectedValue), Convert.ToString(Session["ClientName"]));
 
                 // Yay it was added //
                 lblmsg.Text = "Record Inserted Succesfully into the Database";
@@ -173,4 +171,3 @@ namespace DOTS
         }
 
     }
-}
