@@ -31,20 +31,48 @@ namespace DOTS
 
             return Convert.ToBase64String(bHashPassword);
         }
+
+        public static int DoesLearnerExists(string lEmail, string lFristName, string lLastName)
+        {
+
+            //check to see if user is in the table and alert that user profile exists.
+            SqlDataAdapter adapt = Helpers.connectionHelper("POTS_UserExists");
+            adapt.SelectCommand.Parameters.AddWithValue("@FirstName", lFristName);
+            adapt.SelectCommand.Parameters.AddWithValue("@LastName", lLastName);
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", lEmail);
+            DataTable dt = new DataTable();
+            adapt.Fill(dt);
+
+            if ((dt != null) && (dt.Rows.Count > 0))
+            {
+                int doesExist = Convert.ToInt32(dt.Rows[0]["LearnerId"]);
+                return doesExist;
+            }
+            else
+            {
+                return 0;
+            }
+        }
         //Convert.ToBase64String
-        public static void insertLearner(int lId, string lEmail, string lFristName, string lLastName, int lAccessLevel, string lClientName)
+        public static void insertLearner(string lEmail, string lFristName, string lLastName, int lAccessLevel, string lClientName)
         {
             string connString;
             SqlConnection conn = null;
             SqlCommand sCommand = null;
 
-            //check to see if user is in the table and alert that user profile exists.
+            lEmail = lEmail.ToLower();
+            //lFristName = lFristName.ToLower().Substring(0, 1).ToUpper();
+            //lLastName = lLastName.ToLower().Substring(0, 1).ToUpper();
+
+
             SqlDataAdapter adapt = Helpers.connectionHelper("POTS_ClientPassWord");
             adapt.SelectCommand.Parameters.AddWithValue("@ClientName", lClientName);
             DataTable dt = new DataTable();
             adapt.Fill(dt);
 
-            string sClientPasss = dt.Rows[0]["DefaultPassword"].ToString();
+            string sClientPasss = dt.Rows[0]["DefaultPassword"].ToString();           
+
+            //System.Web.HttpContext.Current.Response.Write(@"<script language='javascript'>alert('the string Email is:"+ lEmail+"');</script>");
 
             try
             {
@@ -53,15 +81,7 @@ namespace DOTS
                 sCommand = new SqlCommand("POTS_UpsertUserProfile", conn);
                 sCommand.CommandType = CommandType.StoredProcedure;
 
-                // do not pass learner ID? //        
-                 //if (lId == 0)
-                 //{ 
-                     sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
-                 //}
-                 //else
-                 //{
-                 //    sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
-                 //}
+                sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = System.DBNull.Value;
 
                 // stuff Administrator inserted //
                 sCommand.Parameters.Add("@LearnerEmail", SqlDbType.VarChar, 255).Value = lEmail;
@@ -73,6 +93,8 @@ namespace DOTS
                 sCommand.Parameters.Add("@AccessLevel", SqlDbType.Int).Value = lAccessLevel;
                 sCommand.Parameters.Add("@ClientId", SqlDbType.Int).Value = dt.Rows[0]["ClientId"];
 
+                // sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
+
                 conn.Open();
                 sCommand.ExecuteNonQuery();
                 conn.Close();
@@ -83,20 +105,28 @@ namespace DOTS
                 conn.Dispose();
             }
         }
+        public static string AllLower(string sValue)
+        {
+            return sValue.ToLower();
+        }
+        public static string InitialCap(string sCapIt)
+        {
+            return sCapIt.Substring(0, 1).ToUpper();
+        }
 
         public static void UpdateLearnerPassword(int lId, string sNewPassword, string sLearnerEmail)
         {
             string connString;
             SqlConnection conn = null;
             SqlCommand sCommand = null;
- 
+
             try
             {
                 connString = ConfigurationManager.ConnectionStrings["POTS_ConnectionString"].ConnectionString;
                 conn = new SqlConnection(connString);
                 sCommand = new SqlCommand("POTS_UpdateUserPassword", conn);
                 sCommand.CommandType = CommandType.StoredProcedure;
-                
+
                 sCommand.Parameters.Add("@LearnerID", SqlDbType.Int).Value = lId;
                 sCommand.Parameters.Add("@LearnerPassword", SqlDbType.VarChar, 255).Value = ComputeHash(sNewPassword, sLearnerEmail);
 

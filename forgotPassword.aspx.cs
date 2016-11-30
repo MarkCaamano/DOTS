@@ -15,12 +15,12 @@ namespace DOTS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ErrorBox.Visible = false;
+           
 
         }
         protected void submitBtn_Click(object sender, EventArgs e)
         {
-            ErrorBox.Visible = false;
+            
             int iActive;
 
             SqlDataAdapter adapt = Helpers.connectionHelper("POTS_PasswordRecovery");
@@ -44,11 +44,11 @@ namespace DOTS
                     //lblErrorMessage.Text = "";
                     break;
                 case 1:
-                    ErrorBox.Visible = true;
+                    
                     lblErrorMessage.Text = "Email sent to <b>" + txtEmail.Text + "</b> this may take a few moments for the message to arrive. Please check your inbox, the message may have been filtered to your junk or spam folder.";
                     break;
                 case -1:
-                    ErrorBox.Visible = true;
+                   
                     lblErrorMessage.Text = "Cannot recover this account.";
                     break;
                 default:

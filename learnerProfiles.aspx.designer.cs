@@ -39,15 +39,6 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.Button btnDelete;
     
     /// <summary>
-    /// UpdatePanel1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-    
-    /// <summary>
     /// gvEmployee control.
     /// </summary>
     /// <remarks>
@@ -120,13 +111,13 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
     
     /// <summary>
-    /// txtPassword control.
+    /// RequiredFieldValidator3 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox txtPassword;
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
     
     /// <summary>
     /// lblFirstName control.
@@ -147,6 +138,15 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.TextBox txtAddFirstName;
     
     /// <summary>
+    /// RequiredFieldValidator2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+    
+    /// <summary>
     /// lblLastName control.
     /// </summary>
     /// <remarks>
@@ -165,6 +165,15 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.TextBox txtAddLastName;
     
     /// <summary>
+    /// RequiredFieldValidator1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+    
+    /// <summary>
     /// lblCompany control.
     /// </summary>
     /// <remarks>
@@ -181,6 +190,24 @@ public partial class learnerProfiles {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox lblCompanyText;
+    
+    /// <summary>
+    /// RequiredFieldValidator4 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+    
+    /// <summary>
+    /// lblError control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblError;
     
     /// <summary>
     /// Table2 control.

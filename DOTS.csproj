@@ -62,6 +62,9 @@
   <ItemGroup>
     <Content Include="Clients\Acorda\Acorda_logo.png" />
     <Content Include="Clients\Acorda\style\AcordaMainStyles.css" />
+    <Content Include="Style\font-awesome.css" />
+    <Content Include="Style\font-awesome.min.css" />
+    <Content Include="Style\MainStyles.css" />
     <Content Include="contact.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="forgotPassword.aspx" />
@@ -81,15 +84,26 @@
     <Content Include="learnerProfiles.aspx" />
     <Content Include="profile.aspx" />
     <Content Include="register.aspx" />
-    <Content Include="Style\font-awesome.css" />
-    <Content Include="Style\font-awesome.min.css" />
-    <Content Include="Style\MainStyles.css" />
     <Content Include="timeout.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\Acorda\AcordaMasterPage.master.cs">
       <DependentUpon>AcordaMasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterDefault.Master.cs">
+      <DependentUpon>MasterDefault.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterDefault.Master.designer.cs">
+      <DependentUpon>MasterDefault.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageStart.Master.cs">
+      <DependentUpon>MasterPageStart.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageStart.Master.designer.cs">
+      <DependentUpon>MasterPageStart.Master</DependentUpon>
     </Compile>
     <Compile Include="contact.aspx.cs">
       <DependentUpon>contact.aspx</DependentUpon>
@@ -134,20 +148,6 @@
     <Compile Include="learnerProfiles.aspx.designer.cs">
       <DependentUpon>learnerProfiles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterDefault.Master.cs">
-      <DependentUpon>MasterDefault.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterDefault.Master.designer.cs">
-      <DependentUpon>MasterDefault.Master</DependentUpon>
-    </Compile>
-    <Compile Include="MasterPageStart.Master.cs">
-      <DependentUpon>MasterPageStart.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterPageStart.Master.designer.cs">
-      <DependentUpon>MasterPageStart.Master</DependentUpon>
-    </Compile>
     <Compile Include="profile.aspx.cs">
       <DependentUpon>profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,8 +172,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MasterDefault.Master" />
-    <Content Include="MasterPageStart.Master" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.woff" />
@@ -182,10 +180,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Clients\DRG\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clients\Acorda\AcordaMasterPage.master" />
     <Content Include="Web.config" />
+    <Content Include="MasterDefault.Master" />
+    <Content Include="MasterPageStart.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

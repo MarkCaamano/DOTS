@@ -138,6 +138,15 @@ public partial class profile {
     protected global::System.Web.UI.WebControls.LinkButton UpdateProfileBtn;
     
     /// <summary>
+    /// cancelBtn control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.LinkButton cancelBtn;
+    
+    /// <summary>
     /// editProfileBtn control.
     /// </summary>
     /// <remarks>
@@ -154,15 +163,6 @@ public partial class profile {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.LinkButton editPasswordBtn;
-    
-    /// <summary>
-    /// cancelBtn control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.LinkButton cancelBtn;
     
     /// <summary>
     /// mp1 control.

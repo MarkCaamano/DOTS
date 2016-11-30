@@ -115,8 +115,8 @@ public partial class profile : System.Web.UI.Page
     }
     protected void lnkSubmitPassword_Click(object sender, EventArgs e)
     {
-        // Helpers.UpdateLearnerPassword(Convert.ToInt32(Session["LearnerId"]), txtConfirmPassword.Text, lblEmailText.Text);
-        //Label1.Text = Helpers.ComputeHash(txtConfirmPassword.Text, lblEmailText.Text);
+         DOTS.Helpers.UpdateLearnerPassword(Convert.ToInt32(Session["LearnerId"]), txtConfirmPassword.Text, lblEmailText.Text);
+        
         //txtPassword.Text = string.Empty;
         //txtConfirmPassword.Text = string.Empty;
 

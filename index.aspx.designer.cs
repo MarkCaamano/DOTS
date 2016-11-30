@@ -30,6 +30,15 @@ public partial class index {
     protected global::System.Web.UI.WebControls.Label lblLogin;
     
     /// <summary>
+    /// lblErrorMessage control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+    
+    /// <summary>
     /// Table1 control.
     /// </summary>
     /// <remarks>
@@ -111,38 +120,20 @@ public partial class index {
     protected global::System.Web.UI.WebControls.Button btnLogin;
     
     /// <summary>
-    /// Table2 control.
+    /// LinkButton2 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Table Table2;
+    protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
     
     /// <summary>
-    /// forgotBtn control.
+    /// LinkButton1 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.LinkButton forgotBtn;
-    
-    /// <summary>
-    /// ErrorBox control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErrorBox;
-    
-    /// <summary>
-    /// lblErrorMessage control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblErrorMessage;
+    protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 }

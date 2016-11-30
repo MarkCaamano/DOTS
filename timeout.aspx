@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageStart.Master" AutoEventWireup="true" CodeBehind="timeout.aspx.cs" Inherits="DOTS.timeout" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterPageStart.Master" AutoEventWireup="true" CodeBehind="timeout.aspx.cs" Inherits="DOTS.timeout" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <h2 style="margin-left: 10%;">Session Expired</h2>                   

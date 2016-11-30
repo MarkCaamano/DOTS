@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="history.aspx.cs" Inherits="DOTS.history" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterDefault.Master" AutoEventWireup="true" CodeBehind="history.aspx.cs" Inherits="DOTS.history" %>
 
 <asp:Content ID="content1" ContentPlaceHolderID="Content_Menu" runat="server">
     <span id="tabId" style="display: none">HyperLink2</span>

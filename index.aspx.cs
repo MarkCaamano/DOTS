@@ -16,7 +16,6 @@ using System.Text;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack) FormsAuthentication.SignOut();
-            ErrorBox.Visible = false;
         }
 
         protected void regBtn_Click(object sender, EventArgs e)
@@ -32,36 +31,36 @@ using System.Text;
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             int iActive;
+            string eMailInput = txtBoxEmail.Text;
+            //int iSubscriber;
 
             SqlDataAdapter adapt = DOTS.Helpers.connectionHelper("POTS_Login");
+            
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", eMailInput);
+            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", DOTS.Helpers.ComputeHash(txtBoxPassword.Text, eMailInput));
 
-            adapt.SelectCommand.Parameters.AddWithValue("@LearnerEmail", txtBoxEmail.Text);
-            //adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text));
-
-            adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);
-
-            //Label1.Text = DOTS.Helpers.ComputeHash(txtBoxPassword.Text, txtBoxEmail.Text);
+            // adapt.SelectCommand.Parameters.AddWithValue("@LearnerPassword", txtBoxPassword.Text);
+            //Label1.Text = DOTS.Helpers.ComputeHash(txtBoxPassword.Text, eMailInput);
 
             DataTable dt = new DataTable();
             adapt.Fill(dt);           
 
             if ((dt != null) && (dt.Rows.Count > 0))
             {
-                iActive = Convert.ToInt32(dt.Rows[0]["Active"]);
+                iActive = Convert.ToInt32(dt.Rows[0]["Active"]);                
             }
             else
             {
                iActive = -1;
-            }          
-            
+            }
+
             switch (iActive)
             {
                 case 0:
-                    ErrorBox.Visible = true;
                     lblErrorMessage.Text = "<strong>" + Convert.ToString(dt.Rows[0]["ClientName"]) + " Account Expired:</strong> Please contact your training manager.";
                     break;
                 case 1:
-                    FormsAuthentication.RedirectFromLoginPage(txtBoxEmail.Text, true);
+                    FormsAuthentication.RedirectFromLoginPage(eMailInput, true);
                     Session["UserName"] = Convert.ToString(dt.Rows[0]["UserName"]);
                     Session["ClientName"] = Convert.ToString(dt.Rows[0]["ClientName"]);
                     Session["ClientId"] = dt.Rows[0]["ClientId"];
@@ -71,15 +70,12 @@ using System.Text;
                     Response.Redirect("home.aspx");
                     break;
                 case -1:
-                    ErrorBox.Visible = true;
-                    lblErrorMessage.Text = "Invalid email or password.";
+                    lblErrorMessage.Text = "The email, password, or both are invalid";
                     break;
                 default:
                     // no default yet
                     break;
             }
-
-            //dt.Dispose();           
-
+           dt.Dispose();           
         }
     }

@@ -7,8 +7,7 @@
 
 .watermark
 {
-    background: url(../images/warkermark.jpg) no-repeat;
-    background-position: 20% 300px;
+    background: url('../images/warkermark.jpg') no-repeat 20% 300px;
 }
 
 .logo
@@ -43,18 +42,31 @@
     line-height: 22px;
 }
 
+.instructions
+{
+    font-size: 0.9em;
+    font-style: italic;
+    margin: 0 0 0 10%;
+    line-height: 22px;
+}
+
 .selectedRow
 {
-    background-color:#C4ECFF;
-    font-weight:bold;
-    color:#646469;
-
+    background-color: #C4ECFF;
+    font-weight: bold;
+    color: #646469;
 }
+
+    .selectedRow td
+    {
+        padding: 5px 10px 5px 10px;
+    }
 
 .gridViewPage
 {
-    background-color:#C4ECFF;
+    background-color: #C4ECFF;
 }
+
 .footer
 {
     font-size: 1.0em;
@@ -68,7 +80,7 @@
     bottom: 0;
 }
 
-.navbar
+#nav-wrapper
 {
     margin-left: 25px;
     margin-right: 25px;
@@ -78,45 +90,43 @@
     border: 1px solid #d8d8d8;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    text-decoration: none;
     height: 38px;
 }
 
-    .navbar a
+    #nav-wrapper a
     {
+        line-height: 38px;
         border-right: 1px solid #d8d8d8;
         display: block;
         float: left;
-        padding: 0px 16px 0px 16px;
+        padding: 0px 16px;
         /* background: url(../images/more_img.png) right center no-repeat; */
         color: #5c5c5c;
         text-decoration: none;
-        line-height: 38px;
         /*font-weight: bold;*/
         cursor: pointer;
     }
 
-        .navbar a:hover, .navSelected
+        #nav-wrapper a:hover, a.navSelected
         {
-            background: -moz-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-            background: -webkit-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-            color: #9c679d !important; /*#722774;*/
-            /*font-weight: bold;*/
-            padding: 0px 16px 0px 16px;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.13+0,0+100 */
+            background: -moz-linear-gradient(top, rgba(0,0,0,0.13) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0.13) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.13) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#21000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+            color: #9c679d;
+            /*font-weight: bold;
+        padding: 0px 16px;*/
         }
 
-/*
-    {
-        background-color: #1B3E70;
-        color: white;
-    }
+a.navSelected
+{
+    color: #9c679d !important;
+    border-top: 1px solid #A9B5BB;
+    /*border-right: 1px solid #b6c1c6;
+    border-left: 1px solid #b6c1c6;*/
+}
 
-    .navbar .active
-    {
-        background-color: #1B3E70;
-        color: white;
-    }*/
 
 .lnkSelected
 {
@@ -147,7 +157,7 @@
 {
     font-size: 0.9em;
     color: #cc0000;
-    padding-right:3%;
+    padding-right: 3%;
 }
 
 .ErrorBox
@@ -178,14 +188,12 @@
 
 .linkBtn
 {
-    display: block;
-    float: left;
-    /*color: #2d58a7;*/
-    padding: 0 26px 0 7px;
+    font-size: 0.95em;
+    /*display: block;
+    color: #2d58a7;*/
     /* background: url(../images/more_img.png) right center no-repeat;*/
-    color: #696a6a;
+    /*color: #696a6a;*/
     text-decoration: none;
-    line-height: 44px;
 }
 
 .rgtBtn
@@ -195,24 +203,24 @@
     /*background: url(../images/more_img-l.png) left center no-repeat;*/
 }
 
-.lnkHome, .lnkScore, .lnkProfile, .lnkUProfile, .lnkUSummary, .lnkCProfile, .lnkCSummary
+/*.lnkHome, .lnkScore, .lnkProfile, .lnkUProfile, .lnkUSummary, .lnkCProfile, .lnkCSummary
 {
-}
+}*/
 
-    /*.lnkHome:hover, .lnkScore:hover, .lnkProfile:hover, .lnkUProfile:hover, .lnkUSummary:hover, .lnkCProfile:hover, .lnkCSummary:hover
+/*.lnkHome:hover, .lnkScore:hover, .lnkProfile:hover, .lnkUProfile:hover, .lnkUSummary:hover, .lnkCProfile:hover, .lnkCSummary:hover
     {
         background: -moz-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
         background: -webkit-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
         background: linear-gradient(to bottom, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
         color: #722774;
         /*font-weight: bold;*/
-    /* padding: 0px 16px 0px 16px;
+/* padding: 0px 16px 0px 16px;
         text-decoration: none;
     }*/
 
-    .lnkHome:visited, .lnkScore:visited, .lnkProfile:visited, .lnkUProfile:visited, .lnkUSummary:visited, .lnkCProfile:visited, .lnkCSummary:visited
+/*.lnkHome:visited, .lnkScore:visited, .lnkProfile:visited, .lnkUProfile:visited, .lnkUSummary:visited, .lnkCProfile:visited, .lnkCSummary:visited
     {
-    }
+    }*/
 
 .courseTable
 {
@@ -291,12 +299,6 @@
     float: right;
 }
 
-.btnLogin
-{
-    margin-top: 10px;
-    height: 28px;
-}
-
 .btnLogin, #Clear, #Register, #Submit, #Reset, #resetBtn, #submitBtn
 {
     -webkit-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
@@ -312,6 +314,23 @@
     font-weight: bold;
     padding: 2px 6px;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.btnLogin 
+{
+    margin-top: 10px;
+    height: 38px;
+    width:40%;
+    color: #FFFFFF;
+    background-color: #722774;
+}
+
+#submitBtn
+{
+  padding: 9px 18px;
+      color: #FFFFFF;
+    background-color: #722774;
 }
 
 /*#16a64b; - DRG green*/
@@ -346,22 +365,27 @@
 {
     /*background: url('../Images/Percent-30.png') no-repeat;*/
 }
+
 .progressImage50
 {
     /*background: url('../Images/Percent-50.png') no-repeat;*/
 }
+
 .progressImage80
 {
     /*background: url('../Images/Percent-80.png') no-repeat;*/
 }
+
 .progressImage90
 {
     /*background: url('../Images/Percent-90.png') no-repeat;*/
 }
+
 .progressImage100
 {
     /*background: url('../Images/Percent-100.png') no-repeat;*/
 }
+
 .progressSpacing
 {
     height: 40px;
@@ -459,7 +483,6 @@
 
 #txtPassword, #txtConfirmPassword
 {
-    width: 100%;
 }
 /* -- password -- */
 .btnCancelPassword, .btnSubmitPassword, .btnSubmitPasswordLG
@@ -482,9 +505,13 @@
 
 .btnSubmitPasswordLG
 {
-      padding: 3px 9px;
+    padding: 3px 9px;
+   
 }
-
+.btnSubmitPasswordLG, .btnCancelPassword, .btnSubmitPassword
+{
+ margin-left:35px;
+}
 .btnCancelPassword
 {
     padding: 4px 9px;
@@ -550,7 +577,7 @@
 {
     padding: 2% 3% 0% 3%;
     margin-left: 12px;
-    width:100%;
+    width: 94%;
 }
 
 /* -- end password -- */
@@ -642,7 +669,7 @@
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    width:500px;
+    width: 460px;
 }
 
 .modalHeader

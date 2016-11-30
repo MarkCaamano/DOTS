@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterDefault.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="DOTS.home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterDefault.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="DOTS.home" %>
  <asp:Content ID="content1" ContentPlaceHolderID ="Content_Menu" runat="server">
+
 <span id="tabId" style="display:none">HyperLink1</span>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">

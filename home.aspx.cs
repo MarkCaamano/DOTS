@@ -40,6 +40,7 @@ namespace DOTS
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            string clientPath = "Clients/"+Session["ClientName"].ToString()+"/";
             if (!Page.IsPostBack)
             {
                 SqlDataAdapter adapt = Helpers.connectionHelper("POTS_UserCourses");
@@ -115,7 +116,7 @@ namespace DOTS
                             }
                             else
                             {
-                                cell5.Text = "<div style='text-align:center;'><a href='" + r["CoursePath"] + "' target='_blank' class='btnLaunch' >Launch</a></div>";
+                                cell5.Text = "<div style='text-align:center;'><a href='" + clientPath + r["CoursePath"] + "' target='_blank' class='btnLaunch' >Launch</a></div>";
                             }
                             row.Cells.Add(cell1);
                             //row.Cells.Add(cell2);
