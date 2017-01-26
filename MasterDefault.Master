@@ -7,8 +7,10 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+
     <link href="Style/MainStyles.css" rel="stylesheet" type="text/css" />
     <link href="Style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
@@ -97,7 +99,6 @@
         <div class="spacer"></div>
         <!----------------------------------------------------- Footer ------------------------------------------------------>
         <div class="footer">&copy; <%= DateTime.Now.Year %> Decision Resources Group (DRG) is a trademark of DRG. All rightes reserved. Version 1.0</div>
-
     </form>
 </body>
 <script type="text/javascript">

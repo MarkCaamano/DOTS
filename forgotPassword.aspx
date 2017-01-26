@@ -37,7 +37,7 @@
                     &nbsp;
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:Button ID="returnBtn" runat="server" CssClass="linkBtn rightFloat" Text="Return" OnClick="returnBtn_Click" ></asp:Button>                   
+                    <asp:Button ID="returnBtn" runat="server" CssClass="btnLogin rightFloat" Text="Cancel" OnClick="returnBtn_Click" Width="90"></asp:Button>                   
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table> 

@@ -6,26 +6,29 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link href="style/MainStyles.css" rel="stylesheet" type="text/css" />
+      
+    <link href="Style/MainStyles.css" rel="stylesheet" type="text/css" />
+    <link href="Style/font-awesome.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="watermark">
-    <!----------------------------------------------------- Header ------------------------------------------------------>
-    <div class="strip">
-        <div class="container">
-            <%--<div class="arrow-up"></div>--%>
-            <div class="logoBackGround">
-                <asp:Image ID="companyLogo" runat="server" ImageUrl="~/images/logoCorner.png" CssClass="logo leftFloat"></asp:Image>
-                <div class="headerText">DRG eTraining Academy</div>
+    <form id="FormMasterStart" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <!----------------------------------------------------- Header ------------------------------------------------------>
+        <div class="strip">
+            <div class="container">                
+                <div class="logoBackGround">
+                    <asp:Image ID="companyLogo" runat="server" ImageUrl="~/images/logoCorner.png" CssClass="logo leftFloat"></asp:Image>
+                    <div class="headerText">DRG eTraining Academy</div>
+                </div>
             </div>
         </div>
-    </div>
-    <!----------------------------------------------------- Body -------------------------------------------------------->
-    <div class="clear">
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        </asp:ContentPlaceHolder>
-        <div class="spacer"></div>
-    </div>
-    <!----------------------------------------------------- Footer ------------------------------------------------------>
-    <div class="footer">&copy; <%= DateTime.Now.Year %> Pinsonault is a trademark of DRG. All Rights Reserved. Version 1.0.</div>
+        <!----------------------------------------------------- Body -------------------------------------------------------->
+        <div class="clear">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>            
+        </div>
+        <!----------------------------------------------------- Footer ------------------------------------------------------>
+        <div class="footer">&copy; <%= DateTime.Now.Year %> Pinsonault is a trademark of DRG. All Rights Reserved. Version 1.0.</div>
+    </form>
 </body>
 </html>

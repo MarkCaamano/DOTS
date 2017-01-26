@@ -255,13 +255,13 @@ public partial class profile {
     protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
     
     /// <summary>
-    /// lnkSubmitPassword control.
+    /// lnkUpdatePassword control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button lnkSubmitPassword;
+    protected global::System.Web.UI.WebControls.LinkButton lnkUpdatePassword;
     
     /// <summary>
     /// lnkCancel control.

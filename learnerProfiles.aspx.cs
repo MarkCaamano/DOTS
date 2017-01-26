@@ -45,9 +45,6 @@ public partial class learnerProfiles : System.Web.UI.Page
     {
         lblCompanyText.Text = Session["ClientName"].ToString();
 
-        //btnEdit.Enabled = false;
-        //btnDelete.Enabled = false;
-
         if (!Page.IsPostBack)
         {
             BindData();
@@ -139,7 +136,7 @@ public partial class learnerProfiles : System.Web.UI.Page
             //empty 
             ClearData();
             // hide pop-up
-            mp1.Hide();
+            mUserPop.Hide();
         }
     }
 
@@ -147,7 +144,7 @@ public partial class learnerProfiles : System.Web.UI.Page
     {
         ClearData();
         // hide pop-up
-        mp1.Hide();
+        mUserPop.Hide();
     }
 
     protected void gvEmployee_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -160,7 +157,11 @@ public partial class learnerProfiles : System.Web.UI.Page
         BindData();
     }
 
+    protected void btnNew_Click(object sender, EventArgs e)
+    {
+        mUserPop.Show();
 
+    }
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
@@ -175,6 +176,8 @@ public partial class learnerProfiles : System.Web.UI.Page
     protected void gvEmployee_SelectedIndexChanged(object sender, EventArgs e)
     {
         GridViewRow row = gvEmployee.SelectedRow;   
-        lblmsg.Text = "You selected " + row.Cells[0].Text + ".";
+        //lblmsg.Text = "You selected " + row.Cells[0].Text + ".";
     }
+
+ 
 }

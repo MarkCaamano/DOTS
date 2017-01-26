@@ -113,7 +113,7 @@ public partial class profile : System.Web.UI.Page
         fChangeBtns(true);
         fPageLoad();
     }
-    protected void lnkSubmitPassword_Click(object sender, EventArgs e)
+    protected void lnkUpdatePassword_Click(object sender, EventArgs e)
     {
          DOTS.Helpers.UpdateLearnerPassword(Convert.ToInt32(Session["LearnerId"]), txtConfirmPassword.Text, lblEmailText.Text);
         

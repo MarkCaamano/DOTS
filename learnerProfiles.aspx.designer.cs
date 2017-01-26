@@ -39,6 +39,15 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.Button btnDelete;
     
     /// <summary>
+    /// btnNewer control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btnNewer;
+    
+    /// <summary>
     /// gvEmployee control.
     /// </summary>
     /// <remarks>
@@ -48,13 +57,13 @@ public partial class learnerProfiles {
     protected global::System.Web.UI.WebControls.GridView gvEmployee;
     
     /// <summary>
-    /// mp1 control.
+    /// mUserPop control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::AjaxControlToolkit.ModalPopupExtender mp1;
+    protected global::AjaxControlToolkit.ModalPopupExtender mUserPop;
     
     /// <summary>
     /// pNewUser control.
@@ -225,7 +234,7 @@ public partial class learnerProfiles {
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button lnkSubmitUser;
+    protected global::System.Web.UI.WebControls.LinkButton lnkSubmitUser;
     
     /// <summary>
     /// lnkCancel control.

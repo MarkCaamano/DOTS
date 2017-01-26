@@ -17,6 +17,20 @@
     left: 2px;
 }
 
+.loginScreen
+{
+    /*background: rgba(217,217,217,0.4);*/
+    padding: 15px 0 22px 0;
+    /*margin:0 20px 0 100px;
+    width:475px;*/
+    /*padding:1% 0% 1.5% 0%;*/
+}
+
+#FormMasterStart
+{
+    background: rgba(230,230,230,0.4);
+}
+
 .headerText
 {
     color: #722774;
@@ -28,10 +42,11 @@
 
 .header1
 {
-    font-size: 1.125em;
+    font-size: 1.5em;
     font-weight: bold;
     margin: 0 0 0 10%;
     line-height: 44px;
+    color: #15a64b;
 }
 
 .header2
@@ -41,13 +56,25 @@
     margin: 0 0 0 10%;
     line-height: 22px;
 }
-
-.instructions
+.rightmargin
+{
+    margin-right:14px;
+}
+.leftmargin
+{
+    padding-left:14px;
+}
+.instructions, .tbforgotPassInstructions
 {
     font-size: 0.9em;
     font-style: italic;
     margin: 0 0 0 10%;
     line-height: 22px;
+}
+
+.tbforgotPassInstructions
+{
+    margin: 1% 5%;
 }
 
 .selectedRow
@@ -160,6 +187,15 @@ a.navSelected
     padding-right: 3%;
 }
 
+    .warning:before
+    {
+        font-family: FontAwesome;
+        content: "";
+        font-weight: normal;
+        font-size: 0.9em;
+        padding-right: 2px;
+    }
+
 .ErrorBox
 {
     margin-top: 20px;
@@ -200,27 +236,7 @@ a.navSelected
 {
     float: right;
     padding: 0 7px 0 26px;
-    /*background: url(../images/more_img-l.png) left center no-repeat;*/
 }
-
-/*.lnkHome, .lnkScore, .lnkProfile, .lnkUProfile, .lnkUSummary, .lnkCProfile, .lnkCSummary
-{
-}*/
-
-/*.lnkHome:hover, .lnkScore:hover, .lnkProfile:hover, .lnkUProfile:hover, .lnkUSummary:hover, .lnkCProfile:hover, .lnkCSummary:hover
-    {
-        background: -moz-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-        background: -webkit-linear-gradient(top, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-        background: linear-gradient(to bottom, rgba(0,0,0,0.1), 100%, rgba(255,255,255,0.1) 0%);
-        color: #722774;
-        /*font-weight: bold;*/
-/* padding: 0px 16px 0px 16px;
-        text-decoration: none;
-    }*/
-
-/*.lnkHome:visited, .lnkScore:visited, .lnkProfile:visited, .lnkUProfile:visited, .lnkUSummary:visited, .lnkCProfile:visited, .lnkCSummary:visited
-    {
-    }*/
 
 .courseTable
 {
@@ -285,51 +301,63 @@ a.navSelected
 /*#646469*/
 /*#722774 -- DRG PURPLE*/
 /*#b993ba*/
-
-/*a:hover, a:focus
-{
-    text-decoration: none;
-    /*display: block;*/
-/*float: left;
-    line-height: 44px;*/
-/*}*/
+/*#15a64b  -- DRG GREEN */
 
 .rgtBtn:hover, .rgtBtn:focus
 {
     float: right;
 }
+/*#Clear, #Register, #Submit, #Reset, #resetBtn, #submitBtn, */
 
-.btnLogin, #Clear, #Register, #Submit, #Reset, #resetBtn, #submitBtn
+.btnLogin, .btnCancel, .btnNewUser
 {
-    -webkit-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
+    /*-webkit-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
     -moz-box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
-    box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;
-    background-color: #EEE;
-    border-radius: 0;
+    box-shadow: rgba(0,0,0,0.98) 0 1px 0 0;*/
+    /*background-color: #EEE;*/
+    /*border-radius: 0;
     -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border: 1px solid #bebebe;
-    color: #666;
-    font-size: 0.9em;
-    font-weight: bold;
-    padding: 2px 6px;
+    -moz-border-radius: 0;*/
+    /*border: 1px solid #bebebe;*/
+    /*color: #666;*/
+    /*font-size: 0.9em;*/    
+    padding: 6px 9px;
     cursor: pointer;
     text-decoration: none;
+    line-height: 22px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
 }
 
-.btnLogin 
+.btnLogin, .btnCancel, .btnNewUser
 {
-    margin-top: 10px;
-    height: 38px;
-    width:40%;
+    /*margin-top: 10px;*/
+    width: 40%;
     color: #FFFFFF;
     background-color: #722774;
+    border: none;   
 }
 
+.btnLogin:hover, .btnCancel:hover, .btnNewUser:hover
+{
+    line-height: 22px;
+    width: 40%;
+    color: #3d3d3d;
+    background-color: #f0e9f1;
+    font-size: 1.2em;
+     padding: 5px 8px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border: solid 1px #722774;
+}
 #submitBtn
 {
-  padding: 9px 18px;
-      color: #FFFFFF;
+    padding: 9px 18px;
+    color: #FFFFFF;
     background-color: #722774;
 }
 
@@ -339,11 +367,11 @@ a.navSelected
 {
     padding: 5px 7px;
     line-height: 40px;
-    border: solid 1px #D6D6D6;
+    border: none;
     border-radius: 4px;
     font-weight: bold;
-    background-color: #FEFEFE;
-    color: #3D3D3D;
+    background-color: #722774;
+    color: #FFFFFF;
     text-decoration: none;
     cursor: pointer;
 }
@@ -352,11 +380,11 @@ a.navSelected
     {
         padding: 5px 7px;
         line-height: 40px;
-        border: solid 1px #dadada;
+        border: solid 1px #722774;
         border-radius: 4px;
         font-weight: bold;
-        background-color: #F4f5F6;
-        color: #777777;
+        background-color: #f0e9f1;
+        color: #3d3d3d;
         text-decoration: none;
         cursor: pointer;
     }
@@ -468,17 +496,24 @@ a.navSelected
         padding: 1px 0px 1px 4px;
     }
 
-    .btnLogout:hover
-    {
-        background: #d93e36;
-        background: -webkit-linear-gradient(bottom, #d93e36 0%,#c52722 18%,#d55e57 100%);
-        background: -moz-linear-gradient(bottom, #d93e36 0%, #c52722 18%, #d55e57 100%);
-        background: linear-gradient(to top, #d93e36 0%,#c52722 18%,#d55e57 100%);
-        text-decoration: none;
-        cursor: pointer;
-        float: right;
-        color: #F4F5F6;
-    }
+.btnCancel:after
+{
+    font-family: FontAwesome;
+    content: "";
+    padding: 1px 0px 1px 4px;
+}
+
+.btnLogout:hover
+{
+    background: #d93e36;
+    background: -webkit-linear-gradient(bottom, #d93e36 0%,#c52722 18%,#d55e57 100%);
+    background: -moz-linear-gradient(bottom, #d93e36 0%, #c52722 18%, #d55e57 100%);
+    background: linear-gradient(to top, #d93e36 0%,#c52722 18%,#d55e57 100%);
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+    color: #F4F5F6;
+}
 
 
 #txtPassword, #txtConfirmPassword
@@ -488,44 +523,45 @@ a.navSelected
 .btnCancelPassword, .btnSubmitPassword, .btnSubmitPasswordLG
 {
     text-decoration: none;
-    line-height: 22px;
-    background: #fefefe; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(bottom, #f0f2f5 0%, #f4f6f8 18%,#fefefe 100%);
-    background: -moz-linear-gradient(bottom, #f0f2f5 0%, #f4f6f8 18%, #fefefe 100%);
-    background: linear-gradient(to top, #f0f2f5 0%, #f4f6f8 18%, #fefefe 100%);
+    line-height: 20px;
+    background: #722774; /* For browsers that do not support gradients */
+    background-color: #722774;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-    border: 1px solid #d5d5d5;
-    color: #3d3d3d;
+    border: none;
+    color: #FFFFFF;
     font-size: 12px;
     font-weight: 600;
-    padding: 0px 9px;
+    padding: 1px 9px;
+ 
 }
 
 .btnSubmitPasswordLG
 {
     padding: 3px 9px;
-   
 }
+
 .btnSubmitPasswordLG, .btnCancelPassword, .btnSubmitPassword
 {
- margin-left:35px;
+    margin-left: 35px;
 }
+
 .btnCancelPassword
 {
     padding: 4px 9px;
 }
-
-    .btnCancelPassword:hover, .btnSubmitPassword:hover, .btnSubmitPasswordLG:hover
+/* .btnCancelPassword:hover, .btnSubmitPasswordLG:hover,*/
+    .btnSubmitPassword:hover
     {
         text-decoration: none;
-        border: solid 1px #dadada;
+        border: solid 1px #722774;
         font-weight: bold;
-        background-color: #F4f5F6;
-        color: #777777;
+        background-color: #f0e9f1;
+        color: #3d3d3d;
         text-decoration: none;
         cursor: pointer;
+        padding: 0px 8px;
     }
 
     .btnCancelPassword:after
@@ -576,11 +612,11 @@ a.navSelected
 .tblPassword
 {
     padding: 2% 3% 0% 3%;
-    margin-left: 12px;
+
     width: 94%;
 }
-
 /* -- end password -- */
+
 .enrolled, .pending
 {
     clear: both;
