@@ -250,30 +250,43 @@ a.navSelected
     background: #646469;
     color: #FFFFFF;
     height: 30px;
+    text-align:left;
 }
 
-    .courseTableHeader td
+    .courseTableHeader th
     {
         padding: 10px;
         border-right: 1px solid #FFFFFF;
         font-weight: bold;
     }
 
-.courseTableRow
+tr.courseTableRow
+{
+    /* background: #F1F1F1;
+   color: #000000;*/
+        background: #FFFFFF;
+     /*border-bottom: 1px solid #cecfd5;*/
+}
+tr.courseTableRow:nth-child(odd) 
 {
     background: #F1F1F1;
-    /*color: #000000;*/
 }
-
-    .courseTableRow td, .courseTableRowOdd td
+.courseTableRow2
+{
+     background: #eff7ff;
+     /*display:none;*/
+  
+}
+    .courseTableRow td, .courseTableRowOdd td, .courseTableRow2
     {
         padding: 5px 10px 5px 10px;
     }
 
-.courseTableRowOdd, .courseTableRowOdd td
+/*.courseTableRowOdd, .courseTableRowOdd td
 {
     background: #FFFFFF;
-}
+     border-bottom: 1px solid #cecfd5;
+}*/
 
 #idPending, #idCourse, #idProfile, #idEditAccount
 {

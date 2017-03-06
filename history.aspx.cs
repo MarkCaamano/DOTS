@@ -52,7 +52,6 @@ namespace DOTS
                 DataTable ct = new DataTable();
                 adapt.Fill(ct);
 
-
                 //DropDownList1.DataSource = ct;
                 //DropDownList1.DataValueField = "Course";
                 //DropDownList1.DataTextField = "Course";
@@ -64,44 +63,86 @@ namespace DOTS
                     {
                         tblCourses.Visible = true;
                         panelNoEnroll.Visible = false;
-
+                        int iCollapseCount = 1;
                         foreach (DataRow r in ct.Rows)
-                        {
+                        {                           
                             string sID = r["CourseID"].ToString();
-
-                            TableRow row = new TableRow();
-                            TableCell cell1 = new TableCell();
-                            TableCell cell2 = new TableCell();
-                            TableCell cell3 = new TableCell();
-                            TableCell cell4 = new TableCell();
-                            TableCell cell5 = new TableCell();
-
-                            //"<button type='button' class='btnLaunch'  onclick='window.open(\"" + r["CoursePath"] + "\",\"_blank\") '>Launch</button>";
-                            cell1.Text = r["CourseID"].ToString();
-
-                            cell2.Text = r["Course"].ToString();
-
-                            cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
-
-                            cell4.Text = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
-                            cell5.Text = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
-
-                            //row.Cells.Add(cell1);
-                            row.Cells.Add(cell2);
-                            row.Cells.Add(cell3);
-                            row.Cells.Add(cell4);
-                            row.Cells.Add(cell5);
-
-                            if (tblCourses.Rows.Count % 2 == 0)
+                            int iRank = Convert.ToInt32(r["RankCourseId"]); 
+                            if (iRank == 1)
                             {
-                                row.CssClass = "courseTableRow";
+                                TableRow row = new TableRow();                               
+                                TableCell cell0 = new TableCell();
+                                TableCell cell1 = new TableCell();
+                                TableCell cell2 = new TableCell();
+                                TableCell cell3 = new TableCell();
+                                TableCell cell4 = new TableCell();
+                                TableCell cell5 = new TableCell();
+                                string s = iCollapseCount.ToString();
+                                cell0.Text = "<button type='button' class='btn-primary' data-toggle='collapse' aria-controls='collapse" + s + "'>1</button>";
+                                //"<button type='button' class='btnLaunch'  onclick='window.open(\"" + r["CoursePath"] + "\",\"_blank\") '>Launch</button>";
+                                cell1.Text = r["CourseID"].ToString();
+
+                                cell2.Text = r["Course"].ToString();
+
+                                cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
+
+                                cell4.Text = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
+                                cell5.Text = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
+
+                                //row.Cells.Add(cell1);
+                                row.Cells.Add(cell0);
+                                row.Cells.Add(cell2);
+                                row.Cells.Add(cell3);
+                                row.Cells.Add(cell4);
+                                row.Cells.Add(cell5);
+
+                                //if (tblCourses.Rows.Count % 2 == 0)
+                                //{
+                                //    row.CssClass = "courseTableRow";
+                                //}
+                                //else
+                                //{
+                                    row.CssClass = "courseTableRow";
+                                //}
+                                tblCourses.Rows.Add(row);
+                               
                             }
                             else
                             {
-                                row.CssClass = "courseTableRowOdd";
+
+                                TableRow row2 = new TableRow();
+                                TableCell cell1 = new TableCell();
+                                TableCell cell2 = new TableCell();
+                                TableCell cell3 = new TableCell();
+                                TableCell cell4 = new TableCell();
+                                TableCell cell5 = new TableCell();
+                                TableCell cell6 = new TableCell();
+
+                                cell1.Text = r["CourseID"].ToString();
+
+                                cell2.Text = "";
+
+                                cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
+
+                                cell4.Text = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
+
+                                cell5.Text = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
+
+                                cell6.Text = "";
+
+row2.Cells.Add(cell6);  
+                                row2.Cells.Add(cell2);
+                                row2.Cells.Add(cell3);
+                                row2.Cells.Add(cell4);
+                                row2.Cells.Add(cell5);
+
+                                row2.CssClass = "courseTableRow2 collapse";
+                             
+                                tblCourses.Rows.Add(row2);
                             }
-                            tblCourses.Rows.Add(row);
-                        }       
+                            //
+ iCollapseCount++;
+                        }
                     }
                     else
                     {

@@ -5,20 +5,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
 
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="Style/bootstrap.min.css" rel="stylesheet" />
+
     <div id="idCourse">
         <div class="idCourseTitle"><%--Completed Courses--%>&nbsp;</div>
-          <asp:Table ID="tblCourses" CssClass="courseTable" runat="server" BorderStyle="None">
-            <asp:TableRow CssClass="courseTableHeader">
-               <%-- <asp:TableCell Width="2%">ID</asp:TableCell>--%>
-                <asp:TableCell Width="50%">Course Name</asp:TableCell>             
-                <asp:TableCell Width="11%">Progress</asp:TableCell>
-                <asp:TableCell Width="8%">Score</asp:TableCell>
-                <asp:TableCell Style="border: none;" Width="13%">Ended</asp:TableCell>
-            </asp:TableRow>
+        <asp:Table ID="tblCourses" CssClass="courseTable" runat="server" BorderStyle="None">
+            <asp:TableHeaderRow CssClass="courseTableHeader">
+                <%-- <asp:TableCell Width="2%">ID</asp:TableCell>--%>
+                <asp:TableHeaderCell Style="border: none;" Width="3%"></asp:TableHeaderCell>
+                <asp:TableHeaderCell Width="50%">Course Name</asp:TableHeaderCell>
+                <asp:TableHeaderCell Width="11%">Progress</asp:TableHeaderCell>
+                <asp:TableHeaderCell Width="8%">Score</asp:TableHeaderCell>
+                <asp:TableHeaderCell Style="border: none;" Width="13%">Ended</asp:TableHeaderCell>
+            </asp:TableHeaderRow>
+
         </asp:Table>
-             <asp:Panel ID="panelNoEnroll" runat="server">
+        <asp:Panel ID="panelNoEnroll" runat="server">
             <div class="noEnrollment">No history could be found</div>
         </asp:Panel>
-</div>
+    </div>
     <asp:Label ID="Label1" runat="server"></asp:Label>
 </asp:Content>

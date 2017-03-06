@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterDefault.Master" AutoEventWireup="true" CodeBehind="profile.aspx.cs" Inherits="profile" %>
 
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxPop" %>
 <asp:Content ID="content1" ContentPlaceHolderID="Content_Menu" runat="server">
     <span id="tabId" style="display: none">HyperLink3</span>

@@ -40,7 +40,7 @@ namespace DOTS
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            string clientPath = "Clients/"+Session["ClientName"].ToString()+"/";
+            string clientPath = "Clients/" + Session["ClientName"].ToString() + "/";
             if (!Page.IsPostBack)
             {
                 SqlDataAdapter adapt = Helpers.connectionHelper("POTS_UserCourses");
@@ -66,7 +66,7 @@ namespace DOTS
                             //cell2.Text = r["CourseStatus"].ToString();
                             //cell3.Text = r["Progress"].ToString();
 
-                            cell3.Text = "<div class='progressImage"+ r["Progress"].ToString() +" progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
+                            cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
 
                             //switch (r["Progress"].ToString())
                             //{
@@ -124,17 +124,19 @@ namespace DOTS
                             row.Cells.Add(cell4);
                             row.Cells.Add(cell5);
 
-                            if (tblCourses.Rows.Count % 2 == 0)
-                            {
-                                row.CssClass = "courseTableRow";
-                            }
-                            else
-                            {
-                                row.CssClass = "courseTableRowOdd";
-                            }
+                            //if (tblCourses.Rows.Count % 2 == 0)
+                            //{
+                            //    row.CssClass = "courseTableRow";
+                            //}
+                            //else
+                            //{
+                            row.CssClass = "courseTableRow";
+                            //}
 
                             tblCourses.Rows.Add(row);
+
                         }
+
                     }
                     else
                     {
@@ -145,49 +147,49 @@ namespace DOTS
                 catch
                 {
                 }
-            //    SqlDataAdapter adaptPending = Helpers.connectionHelper("POTS_UserPending");
-            //    adaptPending.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"]);
-            //    adaptPending.SelectCommand.Parameters.AddWithValue("@LearnerID", Session["LearnerId"]);
-            //    DataTable dtPending = new DataTable();
-            //    adaptPending.Fill(dtPending);
-            //    if ((dtPending != null) && (dtPending.Rows.Count > 0))
-            //    {
-            //        tblPending.Visible = true;
-            //        panelPending.Visible = false;
-            //        foreach (DataRow drPending in dtPending.Rows)
-            //        {
-            //            TableRow rowPending = new TableRow();
-            //            TableCell cell1 = new TableCell();
-            //            TableCell cell2 = new TableCell();
-            //            //class='btnLaunch'
-            //            cell1.Text = drPending["Course"].ToString();
-            //            if (string.IsNullOrEmpty(drPending["CoursePath"].ToString()))
-            //            {
-            //                cell2.Text = "<div class='warning'>Error Not Set</div>";
-            //            }
-            //            else
-            //            {
-            //                cell2.Text = "<a href='" + drPending["CoursePath"] + "' target='_blank' class='btnLaunch'>Launch</a>";
-            //            }
-            //            //cell2.Text = "<a  href='" + drPending["CoursePath"] + "' target='_blank'>Launch</a>";
-            //            rowPending.Cells.Add(cell1);
-            //            rowPending.Cells.Add(cell2);
-            //            if (tblPending.Rows.Count % 2 == 0)
-            //            {
-            //                rowPending.CssClass = "courseTableRow";
-            //            }
-            //            else
-            //            {
-            //                rowPending.CssClass = "courseTableRowOdd";
-            //            }
-            //            tblPending.Rows.Add(rowPending);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        tblPending.Visible = false;
-            //        panelPending.Visible = true;
-            //    }
+                //    SqlDataAdapter adaptPending = Helpers.connectionHelper("POTS_UserPending");
+                //    adaptPending.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"]);
+                //    adaptPending.SelectCommand.Parameters.AddWithValue("@LearnerID", Session["LearnerId"]);
+                //    DataTable dtPending = new DataTable();
+                //    adaptPending.Fill(dtPending);
+                //    if ((dtPending != null) && (dtPending.Rows.Count > 0))
+                //    {
+                //        tblPending.Visible = true;
+                //        panelPending.Visible = false;
+                //        foreach (DataRow drPending in dtPending.Rows)
+                //        {
+                //            TableRow rowPending = new TableRow();
+                //            TableCell cell1 = new TableCell();
+                //            TableCell cell2 = new TableCell();
+                //            //class='btnLaunch'
+                //            cell1.Text = drPending["Course"].ToString();
+                //            if (string.IsNullOrEmpty(drPending["CoursePath"].ToString()))
+                //            {
+                //                cell2.Text = "<div class='warning'>Error Not Set</div>";
+                //            }
+                //            else
+                //            {
+                //                cell2.Text = "<a href='" + drPending["CoursePath"] + "' target='_blank' class='btnLaunch'>Launch</a>";
+                //            }
+                //            //cell2.Text = "<a  href='" + drPending["CoursePath"] + "' target='_blank'>Launch</a>";
+                //            rowPending.Cells.Add(cell1);
+                //            rowPending.Cells.Add(cell2);
+                //            if (tblPending.Rows.Count % 2 == 0)
+                //            {
+                //                rowPending.CssClass = "courseTableRow";
+                //            }
+                //            else
+                //            {
+                //                rowPending.CssClass = "courseTableRowOdd";
+                //            }
+                //            tblPending.Rows.Add(rowPending);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        tblPending.Visible = false;
+                //        panelPending.Visible = true;
+                //    }
             }
         }
 
