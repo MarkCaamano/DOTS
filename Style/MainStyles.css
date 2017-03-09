@@ -259,7 +259,12 @@ a.navSelected
         border-right: 1px solid #FFFFFF;
         font-weight: bold;
     }
-
+    .courseTableHeader th:last-child
+    {
+        padding: 10px;
+        border-right: 0px solid #FF0000;
+        font-weight: bold;
+    }
 tr.courseTableRow
 {
     /* background: #F1F1F1;

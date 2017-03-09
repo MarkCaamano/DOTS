@@ -48,9 +48,15 @@ namespace DOTS
                 SqlDataAdapter adapt = Helpers.connectionHelper("POTS_CompletedCourses");
                 adapt.SelectCommand.Parameters.AddWithValue("@ClientName", Session["ClientName"]);
                 adapt.SelectCommand.Parameters.AddWithValue("@LearnerID", Session["LearnerId"]);
+                
+               
+                //adapt.Fill(dsHistory);
+
+                // dsHistory.Tables.Add("RecentHistory");
+                // dsHistory.Tables.Add("OldHistory");
 
                 DataTable ct = new DataTable();
-                adapt.Fill(ct);
+                adapt.Fill(ct);               
 
                 //DropDownList1.DataSource = ct;
                 //DropDownList1.DataValueField = "Course";
@@ -61,92 +67,74 @@ namespace DOTS
                 {
                     if ((ct != null) && (ct.Rows.Count > 0))
                     {
-                        tblCourses.Visible = true;
                         panelNoEnroll.Visible = false;
-                        int iCollapseCount = 1;
+                        
                         foreach (DataRow r in ct.Rows)
-                        {                           
+                        {
+                            DataTable dtPTable = new DataTable("RecentHistory");
+                            DataTable dtCTable = new DataTable("OldHistory");
+
                             string sID = r["CourseID"].ToString();
-                            int iRank = Convert.ToInt32(r["RankCourseId"]); 
+                            int iRank = Convert.ToInt32(r["RankCourseId"]);
                             if (iRank == 1)
                             {
-                                TableRow row = new TableRow();                               
-                                TableCell cell0 = new TableCell();
-                                TableCell cell1 = new TableCell();
-                                TableCell cell2 = new TableCell();
-                                TableCell cell3 = new TableCell();
-                                TableCell cell4 = new TableCell();
-                                TableCell cell5 = new TableCell();
-                                string s = iCollapseCount.ToString();
-                                cell0.Text = "<button type='button' class='btn-primary' data-toggle='collapse' aria-controls='collapse" + s + "'>1</button>";
+                                dtPTable.Columns.Add("CourseID", typeof(int));
+                                dtPTable.Columns.Add("Course", typeof(string));
+                                dtPTable.Columns.Add("Progress", typeof(string));
+                                dtPTable.Columns.Add("Score", typeof(string));
+                                dtPTable.Columns.Add("CompleteDate", typeof(string));  
+              
+                                //cell0.Text = "<button type='button' class='btn-primary'>1</button>";
                                 //"<button type='button' class='btnLaunch'  onclick='window.open(\"" + r["CoursePath"] + "\",\"_blank\") '>Launch</button>";
-                                cell1.Text = r["CourseID"].ToString();
+                                int sPCell1 = Convert.ToInt32(r["CourseID"]);
+                                string sPCell2 = r["Course"].ToString();
+                                string sPCell3 = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
+                                string sPCell4 = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
+                                string sPCell5 = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
 
-                                cell2.Text = r["Course"].ToString();
-
-                                cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
-
-                                cell4.Text = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
-                                cell5.Text = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
-
-                                //row.Cells.Add(cell1);
-                                row.Cells.Add(cell0);
-                                row.Cells.Add(cell2);
-                                row.Cells.Add(cell3);
-                                row.Cells.Add(cell4);
-                                row.Cells.Add(cell5);
-
-                                //if (tblCourses.Rows.Count % 2 == 0)
-                                //{
-                                //    row.CssClass = "courseTableRow";
-                                //}
-                                //else
-                                //{
-                                    row.CssClass = "courseTableRow";
-                                //}
-                                tblCourses.Rows.Add(row);
-                               
+                                dtPTable.Rows.Add(sPCell1,sPCell2,sPCell3,sPCell4,sPCell5);
                             }
                             else
                             {
 
-                                TableRow row2 = new TableRow();
-                                TableCell cell1 = new TableCell();
-                                TableCell cell2 = new TableCell();
-                                TableCell cell3 = new TableCell();
-                                TableCell cell4 = new TableCell();
-                                TableCell cell5 = new TableCell();
-                                TableCell cell6 = new TableCell();
+                                dtCTable.Columns.Add("CourseID", typeof(int));
+                                dtCTable.Columns.Add("Course", typeof(string));
+                                dtCTable.Columns.Add("Progress", typeof(string));
+                                dtCTable.Columns.Add("Score", typeof(string));
+                                dtCTable.Columns.Add("CompleteDate", typeof(string));  
 
-                                cell1.Text = r["CourseID"].ToString();
+                                string sCCell1 = r["CourseID"].ToString();
 
-                                cell2.Text = "";
+                                string sCCell3 = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
 
-                                cell3.Text = "<div class='progressImage" + r["Progress"].ToString() + " progressSpacing'><div style='text-align:center; line-height:40px;'>" + r["Progress"].ToString() + "</div></div>";
+                                string sCCell4 = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
 
-                                cell4.Text = "<div style='text-align:center;'>" + r["Score"].ToString() + "</div>";
+                                string sCCell5 = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
 
-                                cell5.Text = DateTime.Parse(r["CompleteDate"].ToString()).ToString("MM/dd/yy <br> hh:mm:ss tt");
-
-                                cell6.Text = "";
-
-row2.Cells.Add(cell6);  
-                                row2.Cells.Add(cell2);
-                                row2.Cells.Add(cell3);
-                                row2.Cells.Add(cell4);
-                                row2.Cells.Add(cell5);
-
-                                row2.CssClass = "courseTableRow2 collapse";
-                             
-                                tblCourses.Rows.Add(row2);
+                               // dtCTable.Rows.Add(sCCell1,sCCell3,sCCell4,sCCell5);
+                               
                             }
-                            //
- iCollapseCount++;
+                          
+                            //DataTable dtPTable = new DataTable("RecentHistory");
+                            //DataTable dtCTable = new DataTable("OldHistory");
+
+                            //adapt.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+
+                            DataSet dsHistory = new DataSet();
+                            //Add two DataTables in Dataset  
+                            dsHistory.Tables.Add(dtPTable);
+                            dsHistory.Tables.Add(dtCTable);
+
+                            //DataRelation Datatablerelation = new DataRelation("History", dsHistory.Tables[0].Columns[0], dsHistory.Tables[1].Columns[0], true);
+                            //dsHistory.Relations.Add(dsHistory.Tables["dtPTable"].Columns["CourseID"], dsHistory.Tables["dtCTable"].Columns["CourseID"]);
+
+                            GridView1.DataSource = dsHistory.Tables[0];
+                           
+                            GridView1.DataBind();
                         }
                     }
                     else
                     {
-                        tblCourses.Visible = false;
                         panelNoEnroll.Visible = true;
                     }
                 }
